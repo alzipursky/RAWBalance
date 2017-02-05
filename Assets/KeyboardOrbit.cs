@@ -7,7 +7,7 @@ public class KeyboardOrbit : MonoBehaviour {
     public Transform target;
     //public float distance = -20.0f;
     public float zoomSpd = 2.0f;
-	private float maxZoomIn = 5.0f;
+	private float maxZoomIn = 2.0f;
 	private float maxZoomOut = 50.0f;
 
     public float xSpeed = 1.0f;
