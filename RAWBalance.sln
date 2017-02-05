@@ -1,9 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{E38ABB08-CD2A-E444-FA62-D36E9073F3AE}") = "RAWBalance", "Assembly-CSharp-firstpass.csproj", "{7C442084-9314-AB41-67B1-7D65CCDED902}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAWBalance", "Assembly-CSharp-firstpass.csproj", "{7C442084-9314-AB41-67B1-7D65CCDED902}"
 EndProject
-Project("{E38ABB08-CD2A-E444-FA62-D36E9073F3AE}") = "RAWBalance", "Assembly-CSharp.csproj", "{2BC43CCC-565A-00A9-8B4D-2A5B0660257D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAWBalance", "Assembly-CSharp.csproj", "{2BC43CCC-565A-00A9-8B4D-2A5B0660257D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
