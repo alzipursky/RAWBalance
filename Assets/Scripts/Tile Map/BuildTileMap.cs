@@ -3,7 +3,13 @@ using UnityTileMap;
 
 public class BuildTileMap : MonoBehaviour
 {
-	public Sprite sprite;
+	public Sprite grass;
+	public Sprite water;
+	public Sprite coal;
+	public Sprite sand;
+	public Sprite forest;
+	public int xLimit = 100;
+	public int yLimit = 100;
     private TileMapBehaviour m_tileMapBehaviour;
 
     private void Awake()
@@ -20,9 +26,9 @@ public class BuildTileMap : MonoBehaviour
         var meshSettings = new TileMeshSettings
         {
             // The number of tiles on the x axis
-            TilesX = 100,
+			TilesX = xLimit,
             // The number of tiles on the y axis
-            TilesY = 100,
+            TilesY = yLimit,
             // The number of pixels along each axis on a tile
             TileResolution = 16,
             // The size of one tile in Unity units
@@ -31,14 +37,18 @@ public class BuildTileMap : MonoBehaviour
 
         // Apply settings, resizing the TileMap
         m_tileMapBehaviour.MeshSettings = meshSettings;
-
+		DrawTileMap();
         // Draw a checker pattern
-        for (var i =0; i < 100; i++)
-        {
-            for (var j = 0; j < 100; j++)
-            {
-				m_tileMapBehaviour.PaintTile(i, j, sprite);
-            }
-        }
     }
+
+	private void DrawTileMap()
+	{
+		for (var x = 0; x < xLimit; x++)
+		{
+			for (var y = 0; y < yLimit; y++)
+			{
+				m_tileMapBehaviour.PaintTile(x, y, grass);
+			}
+		}
+	}
 }
