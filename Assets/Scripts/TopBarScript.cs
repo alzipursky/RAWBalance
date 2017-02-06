@@ -27,8 +27,6 @@ public class TopBarScript : MonoBehaviour {
 		PlayerPrefs.SetFloat ("date", date + 1 * Time.deltaTime);
 
 		TopBar.text = string.Format("Gold: {0}   |   Wood: {1}   |   Date: 01/01/1700", gold, wood);
-
-		//Gold: 0   |   Wood:	 0   |   Date: 01/01/1700   
-
+	
 	}
 }
