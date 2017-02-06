@@ -5,6 +5,7 @@
       <File FileName="Assets/Scripts/AddStructure.cs" Line="20" Column="1" />
       <File FileName="Assets/KeyboardOrbit.cs" Line="19" Column="25" />
       <File FileName="Assets/Scripts/Tile Map/BuildWorldMap.cs" Line="59" Column="38" />
+      <File FileName="Assets/TopBarScript.cs" Line="18" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
