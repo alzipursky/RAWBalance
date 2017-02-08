@@ -5,6 +5,7 @@ using UnityEngine;
 public class LumberMill : Structure {
 
 	// Use this for initialization
+	//test
 	void Start () {
 		price = 30000;
 		fixedOperatingCosts = 50;
