@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Structure : MonoBehaviour {
-
-	protected int price;
+public class Village : Settlement {
 
 	// Use this for initialization
 	void Start () {
-		
+		energyTypeDemanded = "wood";
+		perBuildingEnergyUnitsDemanded = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	public int GetPrice()
-	{
-		return price;
 	}
 }
