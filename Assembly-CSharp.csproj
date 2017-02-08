@@ -47,9 +47,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AddStructure.cs" />
+     <Compile Include="Assets\Scripts\DisplaySettlementStats.cs" />
      <Compile Include="Assets\Scripts\KeyboardOrbit.cs" />
+     <Compile Include="Assets\Scripts\LumberMill.cs" />
+     <Compile Include="Assets\Scripts\Settlement.cs" />
+     <Compile Include="Assets\Scripts\Structure.cs" />
      <Compile Include="Assets\Scripts\Tile Map\BuildWorldMap.cs" />
+     <Compile Include="Assets\Scripts\TimeControl.cs" />
      <Compile Include="Assets\Scripts\TopBarScript.cs" />
+     <Compile Include="Assets\Scripts\Village.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TopBarScript : MonoBehaviour {
 
-	int gold;
-	int wood;
-	float date;
+	private int gold;
+	private int wood;
+	private string date;
 
 	public Text TopBar;
 
@@ -16,17 +17,16 @@ public class TopBarScript : MonoBehaviour {
 	void Start () {
 		PlayerPrefs.SetInt ("gold", 50000);
 		PlayerPrefs.SetInt ("wood", 10);
-		PlayerPrefs.SetFloat ("date", 0);
+		PlayerPrefs.SetString("date", "1/1/1700");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		gold = PlayerPrefs.GetInt ("gold", gold);
 		wood = PlayerPrefs.GetInt ("wood", wood);
-		date = PlayerPrefs.GetFloat ("date", date);
-		PlayerPrefs.SetFloat ("date", date + 1 * Time.deltaTime);
+		date = PlayerPrefs.GetString("date", date);
 
-		TopBar.text = string.Format("Gold: {0}   |   Wood: {1}   |   Date: 01/01/1700", gold, wood);
+		TopBar.text = string.Format("Gold: {0}   |   Wood: {1}   |   Date: {2}", gold, wood,date);
 	
 	}
 }

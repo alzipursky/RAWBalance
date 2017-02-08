@@ -7,8 +7,10 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject water;
 	public GameObject coal;
 	public GameObject sand;
-	public GameObject forest;
-	public GameObject village;
+	public GameObject trees;
+	public GameObject forestParent;
+	public GameObject hut;
+	public GameObject villageParent;
 	public int xLimit = 32;
 	public int yLimit = 32;
     private TileMapBehaviour m_tileMapBehaviour;
@@ -72,29 +74,34 @@ public class BuildWorldMap : MonoBehaviour
 
 	private void DrawInitialResources()
 	{
-//		Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(16,16));
-		// draw a forest of 10 units
+		var forest = Instantiate(forestParent);
+		forest.transform.position = new Vector3(16f, 16f);
+
 		for (float j = -1f; j < 3f; j+= (2f / 3)) 
 		{
 			for (float i = 0f; i < 3f; i += (2f / 3)) {
 				Vector3 target = new Vector3(16f + i, 16f + j);
 				target.z = 0;
-				var newForest = Instantiate(forest);
-				newForest.transform.position = target;
+				var tree = Instantiate(trees);
+				tree.transform.position = target;
+				tree.transform.parent = forest.transform;
 			}
 		}
-
 	}
 
 	private void DrawSmallVillage()
 	{
+		var village = Instantiate(villageParent);
+		village.transform.position = new Vector3(22f, 22f);
+
 		for (float j = 0f; j < 2f; j+= (2f / 3)) 
 		{
 			for (float i = 0f; i < 2f; i += (2f / 3)) {
 				Vector3 target = new Vector3(22f + i, 22f + j);
 				target.z = 0;
-				var newForest = Instantiate(village);
-				newForest.transform.position = target;
+				var newHut = Instantiate(hut);
+				newHut.transform.position = target;
+				newHut.transform.parent = village.transform;
 			}
 		}
 	}
