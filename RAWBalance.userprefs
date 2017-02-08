@@ -1,11 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tile Map/BuildWorldMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DisplaySettlementStats.cs">
     <Files>
-      <File FileName="Assets/Scripts/AddStructure.cs" Line="20" Column="1" />
-      <File FileName="Assets/KeyboardOrbit.cs" Line="19" Column="25" />
-      <File FileName="Assets/Scripts/Tile Map/BuildWorldMap.cs" Line="59" Column="38" />
-      <File FileName="Assets/TopBarScript.cs" Line="18" Column="33" />
+      <File FileName="Assets/Scripts/DisplaySettlementStats.cs" Line="25" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
