@@ -36,7 +36,7 @@ public class BuildWorldMap : MonoBehaviour
             // The number of tiles on the y axis
             TilesY = yLimit,
             // The number of pixels along each axis on a tile
-            TileResolution = 128,
+            TileResolution = 16,
             // The size of one tile in Unity units
             TileSize = 4f
         };
