@@ -11,8 +11,8 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject forestParent;
 	public GameObject hut;
 	public GameObject villageParent;
-	public int xLimit = 32;
-	public int yLimit = 32;
+	public int xLimit = 1;
+	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
 
 	private float elapsedTime = 0;
@@ -38,7 +38,7 @@ public class BuildWorldMap : MonoBehaviour
             // The number of pixels along each axis on a tile
             TileResolution = 128,
             // The size of one tile in Unity units
-            TileSize = 1f
+            TileSize = 4f
         };
 
         // Apply settings, resizing the TileMap
