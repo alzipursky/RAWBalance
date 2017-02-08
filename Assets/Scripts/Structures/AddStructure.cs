@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class AddStructure : MonoBehaviour {
 
-	public GameObject settlement;
+	public GameObject structure;
 	private Vector3 target;
 
 	private Vector3 guiLocation;
@@ -16,7 +16,7 @@ public class AddStructure : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		style.font.material.SetColor("_Color", Color.black); //<<<------ this is giving a NullReferenceException....not sure why
+		//style.font.material.SetColor("_Color", Color.black); //<<<------ this is giving a NullReferenceException....not sure why
 	}
 	
 	// Update is called once per frame
@@ -24,15 +24,15 @@ public class AddStructure : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0))
 		{
 			var gold = PlayerPrefs.GetInt("gold");
-			var structure = gameObject.GetComponent<Structure>();
-			var structurePrice = structure.GetPrice();
+			var structurePrice = gameObject.GetComponent<Structure>().GetPrice();
 
 			if (gold > structurePrice) 
 			{
 				target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				target.z = 0;
-				var newSettlement = Instantiate(settlement);
-				newSettlement.transform.position = target;
+				var newStructure = Instantiate(structure);
+				newStructure.transform.position = target;
+				newStructure.GetComponent<Structure>().SetBuilt(true);
 
 				gold -= structurePrice;
 				PlayerPrefs.SetInt("gold", gold);
