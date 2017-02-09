@@ -44,7 +44,10 @@ public class BuildWorldMap : MonoBehaviour
         // Apply settings, resizing the TileMap
         m_tileMapBehaviour.MeshSettings = meshSettings;
 		DrawTileMap();
-		DrawInitialResources();
+        DrawForestatPoint(16f,16f);
+        DrawForestatPoint(5f, 5f);
+        DrawForestatPoint(2f, 16f);
+
         // Draw a checker pattern
     }
 
@@ -55,7 +58,7 @@ public class BuildWorldMap : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 		} else 
 		{
-			DrawSmallVillage();
+            DrawSmallVillageatPoint(22f,22f);
 			villageDrawn = true;
 			elapsedTime += Time.deltaTime;
 		}
@@ -72,36 +75,38 @@ public class BuildWorldMap : MonoBehaviour
 		}
 	}
 
-	private void DrawInitialResources()
+	private void DrawForestatPoint(float x, float y)
 	{
 		var forest = Instantiate(forestParent);
-		forest.transform.position = new Vector3(16f, 16f);
+		forest.transform.position = new Vector3(x, y);
 
 		for (float j = -1f; j < 3f; j+= (2f / 3)) 
 		{
 			for (float i = 0f; i < 3f; i += (2f / 3)) {
-				Vector3 target = new Vector3(16f + i, 16f + j);
+				Vector3 target = new Vector3(x + i, y + j);
 				target.z = 0;
 				var tree = Instantiate(trees);
 				tree.transform.position = target;
 				tree.transform.parent = forest.transform;
+                tree.transform.localScale = new Vector3(4f, 4f);
 			}
 		}
 	}
 
-	private void DrawSmallVillage()
+	private void DrawSmallVillageatPoint(float x, float y)
 	{
 		var village = Instantiate(villageParent);
-		village.transform.position = new Vector3(22f, 22f);
+		village.transform.position = new Vector3(x, y);
 
-		for (float j = 0f; j < 2f; j+= (2f / 3)) 
+		for (float j = 0f; j < 1f; j+= (2f / 3)) 
 		{
-			for (float i = 0f; i < 2f; i += (2f / 3)) {
-				Vector3 target = new Vector3(22f + i, 22f + j);
+			for (float i = 0f; i < 1f; i += (2f / 3)) {
+				Vector3 target = new Vector3(x + i, y + j);
 				target.z = 0;
 				var newHut = Instantiate(hut);
 				newHut.transform.position = target;
 				newHut.transform.parent = village.transform;
+                newHut.transform.localScale = new Vector3(3f, 3f);
 			}
 		}
 	}
