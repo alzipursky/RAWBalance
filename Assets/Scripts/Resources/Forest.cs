@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Village : Settlement {
+public class Forest : Resource {
 
 	// Use this for initialization
 	void Start () {
-		energyTypeDemanded = "Wood";
-		perBuildingEnergyUnitsDemanded = 5;
+		associatedEnergyType = "wood";
+		potentialEnergyPerUnit = 60;
 	}
 	
 	// Update is called once per frame

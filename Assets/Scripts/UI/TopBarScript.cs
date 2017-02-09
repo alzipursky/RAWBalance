@@ -16,7 +16,7 @@ public class TopBarScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.SetInt ("gold", 50000);
-		PlayerPrefs.SetInt ("wood", 10);
+		PlayerPrefs.SetInt ("wood", 0);
 		PlayerPrefs.SetString("date", "1/1/1700");
 	}
 	
