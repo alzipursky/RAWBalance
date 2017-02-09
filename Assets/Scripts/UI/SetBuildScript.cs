@@ -21,16 +21,16 @@ public class SetBuildScript : MonoBehaviour {
 	}
 
 	private void myDropdownValueChangedHandler(Dropdown target) {
-		//Debug.Log("selected: "+target.value);
-		SetBuild (target.value);
+		//Debug.Log("selected: "+target.options[target.value].text);
+		SetBuild (target.options[target.value].text);
 	}
 
 	public void SetDropdownIndex(int index) {
 		dropDown.value = index;
 	}
 
-	void SetBuild (int id) {
-		PlayerPrefs.SetInt ("build", id);
+	void SetBuild (string name) {
+		PlayerPrefs.SetString ("build", name);
 	}
 
 }

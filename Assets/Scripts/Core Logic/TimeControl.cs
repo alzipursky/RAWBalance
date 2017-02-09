@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class TimeControl : MonoBehaviour {
 
+	public Dropdown dropDown;
 
 	// this is a singleton class
 	private TimeControl timeControlScript;
 	// frame rate ~0.02 seconds, so every 0.02 seconds add 2000 seconds to date -> a little more than one day per second
 	private float timeAccelerator = 100000f;
 	private string date;
+
+	private bool added = false;
 
 	// Use this for initialization
 	void Start () {
@@ -27,5 +30,11 @@ public class TimeControl : MonoBehaviour {
 		date = savedDate.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
 		PlayerPrefs.SetString("date", date);
+
+//		if (!added) {
+//			added = true;
+//			dropDown.options.Add (new Dropdown.OptionData() {text="c"});
+//		}
+
 	}
 }
