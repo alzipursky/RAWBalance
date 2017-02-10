@@ -21,15 +21,8 @@ public class DisplayResourceStats : MonoBehaviour {
 		if (_mouseOver) {
 			var totalDemand = 0;
 			var energyType = "";
-			if (gameObject.transform.parent == null) 
-			{
-				totalDemand = gameObject.GetComponent<Resource>().GetPotentialEnergyPerUnit() * gameObject.GetComponent<Resource>().transform.childCount;
-				energyType = gameObject.GetComponent<Resource>().GetAssociateEnergyType();
-			} else 
-			{
-				totalDemand = gameObject.transform.parent.GetComponent<Resource>().GetPotentialEnergyPerUnit() * gameObject.transform.parent.GetComponent<Resource>().transform.childCount;
-				energyType = gameObject.transform.parent.GetComponent<Resource>().GetAssociateEnergyType();
-			}
+			totalDemand = gameObject.GetComponent<Resource>().GetTotalPotentialEnergy();
+			energyType = gameObject.GetComponent<Resource>().GetAssociateEnergyType();
 			//Should eventually change this to GUI.Window or GUI.Box
 			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height), 100, 100), string.Format("Total {0} potential: {1}",energyType,totalDemand), style);
 		}
@@ -37,6 +30,8 @@ public class DisplayResourceStats : MonoBehaviour {
 
 	void OnMouseOver(){
 		_mouseOver = true;
+		if (Input.GetMouseButtonDown(1)) {
+		}
 	}
 
 	void OnMouseExit(){

@@ -11,6 +11,7 @@ public class SetBuildScript : MonoBehaviour {
 
 	void Start()
 	{
+		PlayerPrefs.SetString ("build", "None");
 		dropDown.onValueChanged.AddListener(delegate {
 			myDropdownValueChangedHandler(dropDown);
 		});

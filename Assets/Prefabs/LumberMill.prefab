@@ -20,10 +20,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4494506707118464}
   - component: {fileID: 212630280335021540}
-  - component: {fileID: 114823525296881474}
+  - component: {fileID: 65701051571871104}
+  - component: {fileID: 114085505064567988}
+  - component: {fileID: 114908482470831418}
+  - component: {fileID: 114932350552050168}
+  - component: {fileID: 114153358010792294}
   m_Layer: 0
   m_Name: LumberMill
-  m_TagString: Untagged
+  m_TagString: Lumber Mill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +45,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114823525296881474
+--- !u!65 &65701051571871104
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348412390927702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.72, y: 0.62, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114085505064567988
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,6 +66,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 261055d1e69fb40df8aa799205d761c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114153358010792294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348412390927702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0c40db6ab7b4f14b6072b0b7061c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114908482470831418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348412390927702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdce2056039b4bf4a1ad589569898e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114932350552050168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348412390927702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00a365ace9a94e1abbfccbb793ef953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212630280335021540

@@ -5,18 +5,30 @@ using UnityEngine;
 public class Structure : MonoBehaviour {
 
 	protected bool built;
+	protected bool selected;
+
 	protected int price;
 	protected float processingTime;
 	protected int fixedOperatingCosts;
 
+	protected string associatedEnergyType;
+
+	protected GameObject resourceSource;
+	protected List<GameObject> resourceDestinations = new List<GameObject>();
+
+	void Awake()
+	{
+		
+	}
+
 	// Use this for initialization
 	void Start () {
 		built = false;
+		selected = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	public int GetPrice()
@@ -34,6 +46,11 @@ public class Structure : MonoBehaviour {
 		return fixedOperatingCosts;
 	}
 
+	public string GetAssociatedEnergyType()
+	{
+		return associatedEnergyType;
+	}
+
 	public bool GetBuilt()
 	{
 		return built;
@@ -42,5 +59,43 @@ public class Structure : MonoBehaviour {
 	public void SetBuilt(bool b)
 	{
 		built = b;
+	}
+
+	public void SetSelected(bool b)
+	{
+		selected = b;
+	}
+
+	public bool GetSelected()
+	{
+		return selected;
+	}
+
+	public GameObject GetResourceSource()
+	{
+		return resourceSource;
+	}
+
+	public void SetResourceSource(GameObject obj)
+	{
+		resourceSource = obj;
+	}
+
+	public void AddResourceDestination(GameObject obj)
+	{
+		resourceDestinations.Add(obj);
+	}
+
+	void OnMouseOver()
+	{
+		if (Input.GetMouseButtonDown(1)) 
+		{
+			if (gameObject.transform.parent == null) {
+				SetSelected(!GetSelected());
+			} else {
+				var par = gameObject.transform.parent.GetComponent<Structure>();
+				par.SetSelected(!par.GetSelected());
+			}
+		}
 	}
 }

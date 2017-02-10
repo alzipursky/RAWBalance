@@ -2,10 +2,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class AddStructure : MonoBehaviour {
 
-	public GameObject structure;
+	public List<GameObject> structurePrefabs;
+	public MonoBehaviour scriptP;
 	private Vector3 target;
 
 	private Vector3 guiLocation;
@@ -21,16 +23,30 @@ public class AddStructure : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0))
+
+		var structureTag = PlayerPrefs.GetString("build");
+
+		if (Input.GetMouseButtonDown(0) && (structureTag != "None") && !EventSystem.current.IsPointerOverGameObject())
 		{
 			var gold = PlayerPrefs.GetInt("gold");
-			var structurePrice = gameObject.GetComponent<Structure>().GetPrice();
-
+			var structurePrice = 0;
+			GameObject structurePrefab = null;
+			foreach (var st in structurePrefabs) 
+			{
+				if(st.CompareTag(structureTag))
+				{
+					structurePrefab = st;
+					var tmp = Instantiate(st);
+					structurePrice = tmp.GetComponent<Structure>().GetPrice();
+					Destroy(tmp);
+					break;
+				}
+			}
 			if (gold > structurePrice) 
 			{
 				target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				target.z = 0;
-				var newStructure = Instantiate(structure);
+				var newStructure = Instantiate(structurePrefab);
 				newStructure.transform.position = target;
 				newStructure.GetComponent<Structure>().SetBuilt(true);
 

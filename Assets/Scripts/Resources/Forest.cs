@@ -8,6 +8,12 @@ public class Forest : Resource {
 	void Start () {
 		associatedEnergyType = "wood";
 		potentialEnergyPerUnit = 60;
+
+		if (gameObject.transform.parent == null) {
+			totalPotentialEnergy = potentialEnergyPerUnit * gameObject.transform.childCount;
+		} else {
+			totalPotentialEnergy = potentialEnergyPerUnit * gameObject.transform.parent.transform.childCount;
+		}
 	}
 	
 	// Update is called once per frame
