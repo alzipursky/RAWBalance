@@ -5,11 +5,11 @@ using UnityEngine;
 public class DisplaySettlementStats : MonoBehaviour {
 
 	private bool _mouseOver = false;
-	private GUIStyle style = new GUIStyle();
+	GUIStyle style = new GUIStyle();
 
 	// Use this for initialization
 	void Start () {
-		//style.font.material.SetColor("_Color", Color.black); //<<<------ this is giving a NullReferenceException....not sure why
+		style.normal.textColor = Color.white;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,7 @@ public class DisplaySettlementStats : MonoBehaviour {
 			}
 			//Should eventually change this to GUI.Window or GUI.Box
 			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height), 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
-			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height) - 10, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
+			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height) - 20, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
 		}
 	}
 

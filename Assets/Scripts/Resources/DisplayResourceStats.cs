@@ -5,11 +5,27 @@ using UnityEngine;
 public class DisplayResourceStats : MonoBehaviour {
 
 	private bool _mouseOver = false;
-	private GUIStyle style = new GUIStyle();
+	GUIStyle style = new GUIStyle();
 
 	// Use this for initialization
 	void Start () {
-		//style.font.material.SetColor("_Color", Color.black); //<<<------ this is giving a NullReferenceException....not sure why
+		style.normal.textColor = Color.white;
+
+		// For background color, doesn't really look good
+
+//		Texture2D tex = Texture2D.blackTexture;
+//		var fillColor = new Color(0.0f, 0.0f, 0.0f);
+//		var fillColorArray =  tex.GetPixels();
+//
+//		for(var i = 0; i < fillColorArray.Length; ++i)
+//		{
+//			fillColorArray[i] = fillColor;
+//		}
+//
+//		tex.SetPixels( fillColorArray );
+//		tex.Apply();
+//
+//		style.normal.background = tex;
 	}
 
 	// Update is called once per frame
