@@ -10,11 +10,14 @@ public class KeyboardOrbit : MonoBehaviour {
 	private float maxZoomIn = 1.0f;
 	private float maxZoomOut = 50.0f;
 
-    public float xSpeed = 1.0f;
-    public float ySpeed = 1.0f;
+    public float xSpeed = 0.5f;
+    public float ySpeed = 0.5f;
 
     public int yMinLimit = 0;
     public int yMaxLimit = 100;
+
+	public int xMinLimit = 0;
+	public int xMaxLimit = 100;
 
     private float x = 16.0f;
     private float y = 16.0f;
@@ -24,21 +27,43 @@ public class KeyboardOrbit : MonoBehaviour {
         // Make the rigid body not change rotation
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().freezeRotation = true;
+
+		transform.position = new Vector3 (x, y, z);
     }
 
     public void LateUpdate () {
         if (target) {
-            x += Input.GetAxis("Horizontal") * xSpeed * 0.02f;
-            y += Input.GetAxis("Vertical") * ySpeed * 0.02f;
+
+			var horizontal = Input.GetAxis ("Horizontal");
+			var vertical = Input.GetAxis ("Vertical");
+
+			if (x + horizontal * xSpeed * 0.02f < xMaxLimit && x + horizontal * xSpeed * 0.02f > xMinLimit) {
+				x += horizontal * xSpeed * 0.02f;
+
+			}
+
+			if (y + vertical * ySpeed * 0.02f < yMaxLimit && y + vertical * ySpeed * 0.02f > yMinLimit) {
+				y += vertical * ySpeed * 0.02f;
+
+			}
+
 
 			zoom();
-            transform.position = new Vector3(x,y,z);
+
+			if (horizontal == 0 && vertical == 0) {
+				transform.position = transform.position;
+				x = transform.position.x;
+				y = transform.position.y;
+			} else {
+				transform.position = Vector3.Lerp (transform.position, new Vector3(x,y,z), 0.025f);
+			}
+
         }
     }
 
 	private void zoom()
 	{
-		Camera.main.orthographicSize += Input.GetAxis("Mouse ScrollWheel");
+		Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel");
 		if (Camera.main.orthographicSize < maxZoomIn) 
 		{
 			Camera.main.orthographicSize = maxZoomIn;
