@@ -43,6 +43,8 @@ public class LumberMill : Structure {
 
 		if (resourceDestinations.Count != 0) {
 			//would subtract from supply of wood and subtract from each settlement's demand here
+
+
 		}
 	}
 }
