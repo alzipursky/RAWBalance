@@ -15,6 +15,9 @@ public class Structure : MonoBehaviour {
 
 	protected GameObject resourceSource;
 	protected List<GameObject> resourceDestinations = new List<GameObject>();
+	public Sprite selectedSprite;
+	public Sprite unSelectedSprite;
+
 
 	void Awake()
 	{
@@ -64,6 +67,11 @@ public class Structure : MonoBehaviour {
 	public void SetSelected(bool b)
 	{
 		selected = b;
+		if (selected) {
+			gameObject.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+		} else {
+			gameObject.GetComponent<SpriteRenderer>().sprite = unSelectedSprite;
+		}
 	}
 
 	public bool GetSelected()

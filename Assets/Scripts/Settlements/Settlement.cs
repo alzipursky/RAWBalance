@@ -10,6 +10,9 @@ public class Settlement : MonoBehaviour {
 	protected int perBuildingEnergyUnitsDemanded;
 	protected Dictionary<string, int> totalResourceDemand;
 
+	public Sprite selectedSprite;
+	public Sprite unSelectedSprite;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -33,6 +36,15 @@ public class Settlement : MonoBehaviour {
 	public void SetSelected(bool b)
 	{
 		selected = b;
+		if (selected) {
+			foreach (Transform child in transform){
+				child.gameObject.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+			}
+		} else {
+			foreach (Transform child in transform){
+				child.gameObject.GetComponent<SpriteRenderer>().sprite = unSelectedSprite;
+			}
+		}
 	}
 
 	public bool GetSelected()

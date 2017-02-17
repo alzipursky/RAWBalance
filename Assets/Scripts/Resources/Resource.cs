@@ -10,6 +10,10 @@ public class Resource : MonoBehaviour {
 	protected int potentialEnergyPerUnit;
 	protected int totalPotentialEnergy;
 
+
+	public Sprite selectedSprite;
+	public Sprite unSelectedSprite;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -38,6 +42,15 @@ public class Resource : MonoBehaviour {
 	public void SetSelected(bool b)
 	{
 		selected = b;
+		if (selected) {
+			foreach (Transform child in transform){
+				child.gameObject.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+			}
+		} else {
+			foreach (Transform child in transform){
+				child.gameObject.GetComponent<SpriteRenderer>().sprite = unSelectedSprite;
+			}
+		}
 	}
 
 	public bool GetSelected()
