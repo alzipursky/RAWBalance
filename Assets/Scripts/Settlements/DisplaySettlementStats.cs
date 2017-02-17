@@ -23,12 +23,13 @@ public class DisplaySettlementStats : MonoBehaviour {
 			var energyDemanded = "";
 			if (gameObject.transform.parent == null) 
 			{
-				totalDemand = gameObject.GetComponent<Settlement>().GetPerBuildingEnergyUnitsDemanded() * gameObject.GetComponent<Settlement>().transform.childCount;
+				
 				energyDemanded = gameObject.GetComponent<Settlement>().GetEnergyTypeDemanded();
+				totalDemand = gameObject.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
 			} else 
 			{
-				totalDemand = gameObject.transform.parent.GetComponent<Settlement>().GetPerBuildingEnergyUnitsDemanded() * gameObject.transform.parent.GetComponent<Settlement>().transform.childCount;
 				energyDemanded = gameObject.transform.parent.GetComponent<Settlement>().GetEnergyTypeDemanded();
+				totalDemand = gameObject.transform.parent.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
 			}
 			//Should eventually change this to GUI.Window or GUI.Box
 			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height), 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
