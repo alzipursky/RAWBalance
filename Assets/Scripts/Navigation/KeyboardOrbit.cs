@@ -8,20 +8,22 @@ public class KeyboardOrbit : MonoBehaviour {
     //public float distance = -20.0f;
     public float zoomSpd = 2.0f;
 	private float maxZoomIn = 5.0f;
-	private float maxZoomOut = 20.0f;
+	private float maxZoomOut = 30.0f;
 
     public float xSpeed = 0.5f;
     public float ySpeed = 0.5f;
 
-    public int yMinLimit = 0;
-    public int yMaxLimit = 100;
+    public int yMinLimit = -100;
+    public int yMaxLimit = 200;
 
-	public int xMinLimit = 0;
-	public int xMaxLimit = 100;
+	public int xMinLimit = -100;
+	public int xMaxLimit = 200;
 
     private float x = 16.0f;
     private float y = 16.0f;
 	private float z = -20f;
+
+	private float moveSpeed = 0.025f;
 
     public void Start () {
         // Make the rigid body not change rotation
@@ -57,7 +59,7 @@ public class KeyboardOrbit : MonoBehaviour {
 				x = transform.position.x;
 				y = transform.position.y;
 			} else {
-				transform.position = Vector3.Lerp (transform.position, new Vector3(x,y,z), 0.025f);
+				transform.position = Vector3.Lerp (transform.position, new Vector3(x,y,z), moveSpeed);
 			}
 
         }
@@ -73,5 +75,13 @@ public class KeyboardOrbit : MonoBehaviour {
 		{
 			Camera.main.orthographicSize = maxZoomOut;
 		}
+
+		if (Camera.main.orthographicSize > 10) {
+			moveSpeed = 0.5f;
+		} else if (Camera.main.orthographicSize < 10) {
+			moveSpeed = 0.005f;
+
+		}
+
 	}
 }

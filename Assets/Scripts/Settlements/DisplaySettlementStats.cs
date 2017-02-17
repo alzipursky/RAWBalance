@@ -18,23 +18,21 @@ public class DisplaySettlementStats : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		if (_mouseOver) {
-			var totalDemand = 0;
-			var energyDemanded = "";
-			if (gameObject.transform.parent == null) 
-			{
-				
-				energyDemanded = gameObject.GetComponent<Settlement>().GetEnergyTypeDemanded();
-				totalDemand = gameObject.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
-			} else 
-			{
-				energyDemanded = gameObject.transform.parent.GetComponent<Settlement>().GetEnergyTypeDemanded();
-				totalDemand = gameObject.transform.parent.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
-			}
-			//Should eventually change this to GUI.Window or GUI.Box
-			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height), 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
-			GUI.Label(new Rect(Input.mousePosition.x + 10, -(Input.mousePosition.y-Screen.height) - 20, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
+		var totalDemand = 0;
+		var energyDemanded = "";
+		if (gameObject.transform.parent == null) 
+		{
+			
+			energyDemanded = gameObject.GetComponent<Settlement>().GetEnergyTypeDemanded();
+			totalDemand = gameObject.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
+		} else 
+		{
+			energyDemanded = gameObject.transform.parent.GetComponent<Settlement>().GetEnergyTypeDemanded();
+			totalDemand = gameObject.transform.parent.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
 		}
+		//Should eventually change this to GUI.Window or GUI.Box
+		GUI.Label(new Rect(transform.position.x + 50, transform.position.y - 100, 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
+		GUI.Label(new Rect(transform.position.x + 50, transform.position.y - 120, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
 	}
 
 	void OnMouseOver(){
