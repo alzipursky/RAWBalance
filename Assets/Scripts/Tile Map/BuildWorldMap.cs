@@ -11,6 +11,7 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject forestParent;
 	public GameObject hut;
 	public GameObject villageParent;
+    public GameObject lake;
 	public int xLimit = 1;
 	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
@@ -47,7 +48,8 @@ public class BuildWorldMap : MonoBehaviour
         DrawForestatPoint(16f,16f);
         DrawForestatPoint(5f, 5f);
         DrawForestatPoint(2f, 16f);
-
+        DrawLakeatPoint(10f, 10f);
+        DrawLakeatPoint(2f, 8f);
         // Draw a checker pattern
     }
 
@@ -92,6 +94,26 @@ public class BuildWorldMap : MonoBehaviour
 			}
 		}
 	}
+
+    private void DrawLakeatPoint(float x, float y)
+    {
+        var pond = Instantiate(lake);
+        pond.transform.position = new Vector3(x, y);
+
+        for (float j = -1f; j < 3f; j += (2f / 3))
+        {
+            for (float i = 0f; i < 3f; i += (2f / 3))
+            {
+                Vector3 target = new Vector3(x + i, y + j);
+                target.z = 0;
+                pond.transform.position = target;
+                pond.transform.parent = pond.transform;
+                pond.transform.localScale = new Vector3(4f, 4f);
+            }
+        }
+
+
+    }
 
 	private void DrawSmallVillageatPoint(float x, float y)
 	{
