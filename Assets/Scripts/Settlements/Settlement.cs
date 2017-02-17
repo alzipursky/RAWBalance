@@ -8,6 +8,7 @@ public class Settlement : MonoBehaviour {
 
 	protected string energyTypeDemanded;
 	protected int perBuildingEnergyUnitsDemanded;
+	protected Dictionary<string, int> totalResourceDemand;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,16 @@ public class Settlement : MonoBehaviour {
 	public bool GetSelected()
 	{
 		return selected;
+	}
+		
+	public int GetTotalResourceDemand(string resource)
+	{
+		return totalResourceDemand[resource];
+	}
+
+	public void SetTotalResourceDemand(string resource, int amount)
+	{
+		totalResourceDemand[resource] = amount;
 	}
 
 	void OnMouseOver()

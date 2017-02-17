@@ -11,13 +11,21 @@ public class AttachResource : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// get the structure
 		var s = gameObject.GetComponent<Structure>();
+		// if the structure is selected, otherwise don't do anything
 		if (s.GetSelected()) {
+			// iterate over all active game objects tagged as a "Resource"
 			foreach (var obj in GameObject.FindGameObjectsWithTag("Resource")) {
+				// this if else just determines whether or not we're on a parent object -> if we aren't then move to the parent
 				if (obj.transform.parent == null) {
+					// check for a selected resource if the selected resource is the correct thing to associate with this structure (i.e. forest with lumber mill)
 					if (obj.GetComponent<Resource>().GetSelected() && obj.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType()) {
+						// if it is then set this resoruce as that structure's resource source
 						s.SetResourceSource(obj);
+						// unselect the structure
 						s.SetSelected(false);
+						// unselect the resource
 						obj.GetComponent<Resource>().SetSelected(false);
 					}
 				} else {
