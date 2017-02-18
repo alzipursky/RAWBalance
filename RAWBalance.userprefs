@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Settlements/DisplaySettlementStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Resources/DisplayResourceStats.cs">
     <Files>
-      <File FileName="Assets/Scripts/Structures/Structure.cs" Line="70" Column="3" />
-      <File FileName="Assets/Scripts/Resources/Resource.cs" Line="53" Column="4" />
-      <File FileName="Assets/Scripts/Settlements/Settlement.cs" Line="39" Column="3" />
-      <File FileName="Assets/Scripts/Settlements/DisplaySettlementStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Structures/Structure.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Resources/Resource.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Settlements/Settlement.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/Settlements/DisplaySettlementStats.cs" Line="29" Column="67" />
+      <File FileName="Assets/Scripts/Resources/DisplayResourceStats.cs" Line="27" Column="61" />
+      <File FileName="Assets/Scripts/Navigation/KeyboardOrbit.cs" Line="11" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
