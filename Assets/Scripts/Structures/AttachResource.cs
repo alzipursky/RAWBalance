@@ -19,20 +19,27 @@ public class AttachResource : MonoBehaviour {
 			foreach (var obj in GameObject.FindGameObjectsWithTag("Resource")) {
 				// this if else just determines whether or not we're on a parent object -> if we aren't then move to the parent
 				if (obj.transform.parent == null) {
-					// check for a selected resource if the selected resource is the correct thing to associate with this structure (i.e. forest with lumber mill)
-					if (obj.GetComponent<Resource>().GetSelected() && obj.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType()) {
+					// check for a selected resource, if the selected resource is the correct thing to associate with this structure (i.e. forest with lumber mill), 
+					// and make sure this resource isn't already attached
+					if (obj.GetComponent<Resource>().GetSelected() && 
+						obj.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType() && 
+						obj != s.GetResourceSource()) {
 						// if it is then set this resoruce as that structure's resource source
 						s.SetResourceSource(obj);
 						// unselect the structure
 						s.SetSelected(false);
 						// unselect the resource
 						obj.GetComponent<Resource>().SetSelected(false);
+						//Debug.Log("attached");
 					}
 				} else {
-					if (obj.transform.parent.GetComponent<Resource>().GetSelected() && obj.transform.parent.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType()) {
+					if (obj.transform.parent.GetComponent<Resource>().GetSelected() && 
+						obj.transform.parent.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType() && 
+						obj.transform.parent.gameObject != s.GetResourceSource()) {
 						s.SetResourceSource(obj.transform.parent.gameObject);
 						s.SetSelected(false);
 						obj.transform.parent.GetComponent<Resource>().SetSelected(false);
+						//Debug.Log("attached");
 					}
 				}
 			}

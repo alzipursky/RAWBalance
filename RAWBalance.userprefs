@@ -1,6 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Settlements/DisplaySettlementStats.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Settlements/Settlement.cs" Line="26" Column="21" />
+      <File FileName="Assets/Scripts/Settlements/Village.cs" Line="23" Column="42" />
+      <File FileName="Assets/Scripts/Settlements/DisplaySettlementStats.cs" Line="29" Column="77" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -6,7 +6,8 @@ public class Settlement : MonoBehaviour {
 
 	protected bool selected;
 
-	protected string energyTypeDemanded;
+	protected List<string> energyTypeDemanded;
+	//protected string energyTypeDemanded;
 	protected int perBuildingEnergyUnitsDemanded;
 	protected Dictionary<string, int> totalResourceDemand;
 
@@ -22,7 +23,7 @@ public class Settlement : MonoBehaviour {
 		
 	}
 
-	public string GetEnergyTypeDemanded()
+	public List<string> GetEnergyTypeDemanded()
 	{
 		return energyTypeDemanded;
 	}

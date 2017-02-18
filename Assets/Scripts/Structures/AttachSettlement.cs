@@ -15,17 +15,18 @@ public class AttachSettlement : MonoBehaviour {
 		if (s.GetSelected()) {
 			foreach (var obj in GameObject.FindGameObjectsWithTag("Settlement")) {
 				if (obj.transform.parent == null) {
-					if (obj.GetComponent<Settlement>().GetSelected()) {
-						Debug.Log(obj);
+					if (obj.GetComponent<Settlement>().GetSelected() && !s.GetResourceDestinations().Contains(obj)) {
 						s.AddResourceDestination(obj);	
 						s.SetSelected(false);
 						obj.GetComponent<Settlement>().SetSelected(false);
+						//Debug.Log("Attached");
 					}
 				} else {
-					if (obj.transform.parent.GetComponent<Settlement>().GetSelected()) {
+					if (obj.transform.parent.GetComponent<Settlement>().GetSelected() && !s.GetResourceDestinations().Contains(obj.transform.parent.gameObject)) {
 						s.AddResourceDestination(obj.transform.parent.gameObject);
 						s.SetSelected(false);
 						obj.transform.parent.GetComponent<Settlement>().SetSelected(false);
+						//Debug.Log("Attached");
 					}
 				}
 			}

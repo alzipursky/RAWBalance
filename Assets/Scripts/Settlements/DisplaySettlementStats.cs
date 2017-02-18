@@ -21,13 +21,16 @@ public class DisplaySettlementStats : MonoBehaviour {
 		style.normal.textColor = Color.white;
 		style.fontSize = 12 - (int) (Camera.main.orthographicSize / 10);
 		var space = 20 - (int) (Camera.main.orthographicSize / 8);
-
-		var energyDemanded = gameObject.GetComponent<Settlement>().GetEnergyTypeDemanded();
-		var totalDemand = gameObject.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
 		var point = Camera.main.WorldToScreenPoint (transform.position);
 
-		GUI.Label(new Rect(point.x, -(point.y - Screen.height), 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
-		GUI.Label(new Rect(point.x, -(point.y - Screen.height) + space, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
+		foreach (var energyDemanded in gameObject.GetComponent<Settlement>().GetEnergyTypeDemanded()) {
+			var totalDemand = gameObject.GetComponent<Settlement>().GetTotalResourceDemand(energyDemanded);
+
+			// going to need to fix this when they actually demand multiple resources
+			GUI.Label(new Rect(point.x, -(point.y - Screen.height), 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
+			GUI.Label(new Rect(point.x, -(point.y - Screen.height) + space, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
+		}
+
 	}
 
 

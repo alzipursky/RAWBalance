@@ -89,6 +89,11 @@ public class Structure : MonoBehaviour {
 		resourceSource = obj;
 	}
 
+	public List<GameObject> GetResourceDestinations()
+	{
+		return resourceDestinations;
+	}
+
 	public void AddResourceDestination(GameObject obj)
 	{
 		resourceDestinations.Add(obj);

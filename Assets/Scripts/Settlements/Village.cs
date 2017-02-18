@@ -8,16 +8,21 @@ public class Village : Settlement {
 
 	// Use this for initialization
 	void Start () {
-		energyTypeDemanded = "wood";
+		energyTypeDemanded = new List<string>();
+		energyTypeDemanded.Add("wood");
+
 		perBuildingEnergyUnitsDemanded = 5;
 		totalResourceDemand = new Dictionary<string, int>();
-		totalResourceDemand[energyTypeDemanded] = perBuildingEnergyUnitsDemanded * transform.childCount;
+		totalResourceDemand["wood"] = perBuildingEnergyUnitsDemanded * transform.childCount;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (elapsedTime > 3f) {
-			totalResourceDemand[energyTypeDemanded] += 5;
+			foreach (var energyType in energyTypeDemanded) {
+				totalResourceDemand[energyType] += 5;
+			}
+
 			//would deplete the forest right here also
 			elapsedTime = 0f;
 		} else {
