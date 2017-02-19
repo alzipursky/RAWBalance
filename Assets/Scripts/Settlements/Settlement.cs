@@ -15,9 +15,8 @@ public class Settlement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -62,15 +61,39 @@ public class Settlement : MonoBehaviour {
 		totalResourceDemand[resource] = amount;
 	}
 
+
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown(1)) 
 		{
+			var objectTag = gameObject.tag;
+
+			bool notAlreadySelected = true;
+
+			foreach (var obj in GameObject.FindGameObjectsWithTag(objectTag)) {
+				if (obj.GetComponent<Settlement>().GetSelected()) {
+					notAlreadySelected = false;;
+					break;
+				}
+			}
+
 			if (gameObject.transform.parent == null) {
-				SetSelected(!GetSelected());
+				if (!GetSelected()) {
+					if (notAlreadySelected) {
+						SetSelected(!GetSelected());
+					}
+				} else {
+					SetSelected(!GetSelected());
+				}
 			} else {
 				var par = gameObject.transform.parent.GetComponent<Settlement>();
-				par.SetSelected(!par.GetSelected());
+				if (!par.GetSelected()) {
+					if (notAlreadySelected) {
+						par.SetSelected(!par.GetSelected());
+					}
+				} else {
+					par.SetSelected(!par.GetSelected());
+				}
 			}
 		}
 	}

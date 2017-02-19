@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4497236046635932}
   - component: {fileID: 212454423145965600}
   - component: {fileID: 65889532385400824}
-  - component: {fileID: 114115281081273140}
   - component: {fileID: 114043020819386280}
   m_Layer: 0
   m_Name: Hut
@@ -68,17 +67,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: 106042b03c338473f97a7d3489305b15, type: 3}
   unSelectedSprite: {fileID: 21300000, guid: c74d05ab973562c438a0a0dd704dbcdf, type: 3}
---- !u!114 &114115281081273140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1980212943644420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e06ed0ccec24ec6b550248a63045d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212454423145965600
 SpriteRenderer:
   m_ObjectHideFlags: 1
