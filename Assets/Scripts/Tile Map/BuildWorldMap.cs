@@ -12,6 +12,7 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject hut;
 	public GameObject villageParent;
     public GameObject lake;
+    public GameObject mountainParent;
 	public int xLimit = 1;
 	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
@@ -50,6 +51,7 @@ public class BuildWorldMap : MonoBehaviour
         DrawForestatPoint(2f, 16f);
         DrawLakeatPoint(10f, 10f);
         DrawLakeatPoint(2f, 8f);
+        DrawCoalatPoint(35f, 35f);
         // Draw a checker pattern
     }
 
@@ -132,4 +134,26 @@ public class BuildWorldMap : MonoBehaviour
 			}
 		}
 	}
+
+    private void DrawCoalatPoint(float x, float y)
+    {
+        var mtn = Instantiate(mountainParent);
+        mtn.transform.position = new Vector3(x, y);
+
+        for (float j = 0f; j < 1f; j += (2f / 3))
+        {
+            for (float i = 0f; i < 1f; i += (2f / 3))
+            {
+                Vector3 target = new Vector3(x + i, y + j);
+                target.z = 0;
+                var newCoal = Instantiate(coal);
+                newCoal.transform.position = target;
+                newCoal.transform.parent = mtn.transform;
+                newCoal.transform.localScale = new Vector3(3f, 3f);
+            }
+        }
+
+    }
+
+    //insert prefab instationtion for coal -> mountain here as forest above
 }
