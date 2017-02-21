@@ -17,7 +17,8 @@ public class BuildWorldMap : MonoBehaviour
 	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
 
-	private float elapsedTime = 0;
+	private float elapsedTime = 0f;
+	private float timeLimit = 5f;
 	private bool villageDrawn = false;
 
     private void Awake()
@@ -52,19 +53,39 @@ public class BuildWorldMap : MonoBehaviour
         DrawLakeatPoint(10f, 10f);
         DrawLakeatPoint(2f, 8f);
         DrawCoalatPoint(35f, 35f);
+
+		DrawSmallVillageatPoint(22f,22f);
+
         // Draw a checker pattern
     }
 
 	private void Update()
 	{
-		if (elapsedTime < 5f || villageDrawn) 
+		if (elapsedTime < timeLimit) 
 		{
 			elapsedTime += Time.deltaTime;
 		} else 
 		{
-            DrawSmallVillageatPoint(22f,22f);
-			villageDrawn = true;
-			elapsedTime += Time.deltaTime;
+			var point = new Vector3(Random.Range(0,xLimit),Random.Range(0,yLimit));
+			var pointOK = false;
+
+			while (!pointOK) 
+			{
+				foreach (var obj in GameObject.FindObjectsOfType<GameObject>()) {
+					if (obj.activeInHierarchy && 
+						(point.x == obj.transform.position.x) || (point.y == obj.transform.position.y)) {
+						point = new Vector3(Random.Range(0,xLimit),Random.Range(0,yLimit));
+						pointOK = false;
+						break;
+					}
+					pointOK = true;
+				}
+			}
+
+			DrawSmallVillageatPoint(point.x,point.y);
+			//villageDrawn = true;
+			elapsedTime = 0f;
+			timeLimit *= 2f;
 		}
 	}
 

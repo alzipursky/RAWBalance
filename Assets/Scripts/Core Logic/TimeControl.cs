@@ -16,6 +16,8 @@ public class TimeControl : MonoBehaviour {
 
 	private bool added = false;
 
+	private float elapsedTime = 0f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -23,13 +25,28 @@ public class TimeControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		date = PlayerPrefs.GetString("date", date);
+//		date = PlayerPrefs.GetString("date", date);
 
-		DateTime savedDate = DateTime.Parse(date,System.Globalization.CultureInfo.InvariantCulture);
-		savedDate = savedDate.AddSeconds((double)Time.deltaTime*timeAccelerator);
-		date = savedDate.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (elapsedTime > 1f) {
+			date = PlayerPrefs.GetString("date", date);
 
-		PlayerPrefs.SetString("date", date);
+			DateTime savedDate = DateTime.Parse(date,System.Globalization.CultureInfo.InvariantCulture);
+			savedDate = savedDate.AddDays(1);
+			date = savedDate.ToString("MMMM dd, yyyy");
+
+			PlayerPrefs.SetString("date", date);
+
+			//would deplete the forest right here also
+			elapsedTime = 0f;
+		} else {
+			elapsedTime += Time.deltaTime;
+		}
+
+//		DateTime savedDate = DateTime.Parse(date,System.Globalization.CultureInfo.InvariantCulture);
+//		savedDate = savedDate.AddSeconds((double)Time.deltaTime*timeAccelerator);
+//		date = savedDate.ToString(System.Globalization.CultureInfo.InvariantCulture);
+//
+//		PlayerPrefs.SetString("date", date);
 
 //		if (!added) {
 //			added = true;

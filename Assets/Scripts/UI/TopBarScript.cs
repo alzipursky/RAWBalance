@@ -17,7 +17,8 @@ public class TopBarScript : MonoBehaviour {
 	void Start () {
 		PlayerPrefs.SetInt ("gold", 50000);
 		PlayerPrefs.SetInt ("wood", 0);
-		PlayerPrefs.SetString("date", "1/1/1700");
+		//PlayerPrefs.SetString("date", "1/1/1700");
+		PlayerPrefs.SetString("date", "January 01, 1700");
 	}
 	
 	// Update is called once per frame
