@@ -17,6 +17,7 @@ public class Structure : MonoBehaviour {
 	protected List<GameObject> resourceDestinations = new List<GameObject>();
 	public Sprite selectedSprite;
 	public Sprite unSelectedSprite;
+	public Sprite hoverSprite;
 
 
 	void Awake()
@@ -99,37 +100,84 @@ public class Structure : MonoBehaviour {
 		resourceDestinations.Add(obj);
 	}
 
+	void OnMouseExit() {
+		if (gameObject.transform.parent == null) {
+			foreach (GameObject destination in resourceDestinations) {
+				foreach (Transform child in destination.transform){
+					child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+				}
+			}
+
+		} else {
+			var par = gameObject.transform.parent.GetComponent<Structure> ();
+			foreach (GameObject destination in par.resourceDestinations) {
+				foreach (Transform child in destination.transform){
+					child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+				}
+			}
+		}
+
+		if (resourceSource) {
+			foreach (Transform child in resourceSource.transform){
+				child.GetComponent<SpriteRenderer> ().sprite = resourceSource.GetComponent<Resource>().unSelectedSprite;
+			}
+		}
+
+	}
+
 	void OnMouseOver()
 	{
-		if (Input.GetMouseButtonDown(1)) 
-		{
+		if (Input.GetMouseButtonDown (1)) {
 			var objectTag = gameObject.tag;
 
 			bool notAlreadySelected = true;
 
 			foreach (var obj in GameObject.FindGameObjectsWithTag(objectTag)) {
-				if (obj.GetComponent<Structure>().GetSelected()) {
-					notAlreadySelected = false;;
+				if (obj.GetComponent<Structure> ().GetSelected ()) {
+					notAlreadySelected = false;
+					;
 					break;
 				}
 			}
 
 			if (gameObject.transform.parent == null) {
-				if (!GetSelected()) {
+				if (!GetSelected ()) {
 					if (notAlreadySelected) {
-						SetSelected(!GetSelected());
+						SetSelected (!GetSelected ());
 					}
 				} else {
-					SetSelected(!GetSelected());
+					SetSelected (!GetSelected ());
 				}
 			} else {
-				var par = gameObject.transform.parent.GetComponent<Structure>();
-				if (!par.GetSelected()) {
+				var par = gameObject.transform.parent.GetComponent<Structure> ();
+				if (!par.GetSelected ()) {
 					if (notAlreadySelected) {
-						par.SetSelected(!par.GetSelected());
+						par.SetSelected (!par.GetSelected ());
 					}
 				} else {
-					par.SetSelected(!par.GetSelected());
+					par.SetSelected (!par.GetSelected ());
+				}
+			}
+		} else {
+			if (gameObject.transform.parent == null) {
+				foreach (GameObject destination in resourceDestinations) {
+					foreach (Transform child in destination.transform){
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().hoverSprite;
+					}
+				}
+
+			} else {
+				var par = gameObject.transform.parent.GetComponent<Structure> ();
+				foreach (GameObject destination in par.resourceDestinations) {
+					foreach (Transform child in destination.transform){
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().hoverSprite;
+					}
+				}
+			}
+
+			if (resourceSource) {
+				foreach (Transform child in resourceSource.transform){
+					child.GetComponent<SpriteRenderer> ().sprite = resourceSource.GetComponent<Resource>().hoverSprite;
 				}
 			}
 		}
