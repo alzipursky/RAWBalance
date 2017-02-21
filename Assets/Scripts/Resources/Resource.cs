@@ -51,6 +51,11 @@ public class Resource : MonoBehaviour {
 		return totalPotentialEnergy;
 	}
 
+	public void SetTotalPotentialEnergy(int energy)
+	{
+		totalPotentialEnergy = energy;
+	}
+
 	public void SetSelected(bool b)
 	{
 		selected = b;

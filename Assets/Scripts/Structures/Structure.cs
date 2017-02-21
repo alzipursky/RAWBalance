@@ -10,6 +10,7 @@ public class Structure : MonoBehaviour {
 	protected int price;
 	protected float processingTime;
 	protected int fixedOperatingCosts;
+	protected int resourceSupply;
 
 	protected string associatedEnergyType;
 
@@ -48,6 +49,14 @@ public class Structure : MonoBehaviour {
 	public int GetFixedOperatingCosts()
 	{
 		return fixedOperatingCosts;
+	}
+
+	public int GetResourceSupply(){
+		return resourceSupply;
+	}
+
+	public void SetResourceSupply(int supply){
+		resourceSupply = supply;
 	}
 
 	public string GetAssociatedEnergyType()

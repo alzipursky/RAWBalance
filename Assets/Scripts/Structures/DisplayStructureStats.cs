@@ -23,6 +23,7 @@ public class DisplayStructureStats : MonoBehaviour {
 //		var totalDemand = gameObject.GetComponent<Resource>().GetTotalPotentialEnergy();
 //		var energyType = gameObject.GetComponent<Resource>().GetAssociateEnergyType();
 		var point = Camera.main.WorldToScreenPoint (transform.position);
+		var space = 20 - (int) (Camera.main.orthographicSize / 8);
 
 //		GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format("Total {0} potential: {1}",energyType,totalDemand), style);
 
@@ -38,10 +39,14 @@ public class DisplayStructureStats : MonoBehaviour {
 		}
 			
 		if (chopping && !shipping) {
+			var wood = gameObject.GetComponent<Structure>().GetResourceSupply();
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Chopping Wood"), style);
+			GUI.Label(new Rect(point.x, -(point.y - Screen.height) + space, 100, 100), string.Format("Total wood supply: {0}",wood), style);
 
 		} else if (chopping && shipping) {
+			var wood = gameObject.GetComponent<Structure>().GetResourceSupply();
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Producing and Selling Wood"), style);
+			GUI.Label(new Rect(point.x, -(point.y - Screen.height) + space, 100, 100), string.Format("Total wood supply: {0}",wood), style);
 
 		} else if (shipping && !chopping) {
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Connected to Village"), style);
