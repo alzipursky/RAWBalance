@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Navigation\KeyboardOrbit.cs" />
      <Compile Include="Assets\Scripts\Resources\DisplayResourceStats.cs" />
      <Compile Include="Assets\Scripts\Resources\Forest.cs" />
+     <Compile Include="Assets\Scripts\Resources\Mountain.cs" />
      <Compile Include="Assets\Scripts\Resources\Resource.cs" />
      <Compile Include="Assets\Scripts\Settlements\DisplaySettlementStats.cs" />
      <Compile Include="Assets\Scripts\Settlements\Settlement.cs" />
