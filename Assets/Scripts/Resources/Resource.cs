@@ -73,13 +73,28 @@ public class Resource : MonoBehaviour {
 	void OnMouseExit() {
 		if (gameObject.transform.parent == null) {
 			foreach (GameObject destination in destinations) {
-				destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().unSelectedSprite;
+				bool isSelected = destination.GetComponent<Structure>().GetSelected();
+
+				if (isSelected) {
+					destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().selectedSprite;
+
+				} else {
+					destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().unSelectedSprite;
+				}
 			}
 
 		} else {
 			var par = gameObject.transform.parent.GetComponent<Resource> ();
 			foreach (GameObject destination in par.destinations) {
-				destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().unSelectedSprite;
+				bool isSelected = destination.GetComponent<Structure>().GetSelected();
+
+				if (isSelected) {
+					destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().selectedSprite;
+
+				} else {
+					destination.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Structure>().unSelectedSprite;
+
+				}
 			}
 		}
 	}

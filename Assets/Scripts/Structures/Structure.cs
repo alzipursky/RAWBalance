@@ -103,23 +103,45 @@ public class Structure : MonoBehaviour {
 	void OnMouseExit() {
 		if (gameObject.transform.parent == null) {
 			foreach (GameObject destination in resourceDestinations) {
+				bool isSelected = destination.GetComponent<Settlement> ().GetSelected();
+
 				foreach (Transform child in destination.transform){
-					child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+					if (isSelected) {
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().selectedSprite;
+
+					} else {
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+					}
 				}
 			}
 
 		} else {
 			var par = gameObject.transform.parent.GetComponent<Structure> ();
+
 			foreach (GameObject destination in par.resourceDestinations) {
+				bool isSelected = destination.GetComponent<Resource> ().GetSelected();
+
 				foreach (Transform child in destination.transform){
-					child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+					if (isSelected) {
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().selectedSprite;
+
+					} else {
+						child.GetComponent<SpriteRenderer> ().sprite = destination.GetComponent<Settlement>().unSelectedSprite;
+					}
 				}
 			}
 		}
 
 		if (resourceSource) {
+			bool isSelected = resourceSource.GetComponent<Resource> ().GetSelected();
+
 			foreach (Transform child in resourceSource.transform){
-				child.GetComponent<SpriteRenderer> ().sprite = resourceSource.GetComponent<Resource>().unSelectedSprite;
+				if (isSelected) {
+					child.GetComponent<SpriteRenderer> ().sprite = resourceSource.GetComponent<Resource>().selectedSprite;
+
+				} else {
+					child.GetComponent<SpriteRenderer> ().sprite = resourceSource.GetComponent<Resource>().unSelectedSprite;
+				}
 			}
 		}
 
