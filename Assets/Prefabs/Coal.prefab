@@ -65,8 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41e59be7e8489d4493a9d4d1f9c8fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: ba5645ffe7fff5a4f8b6fef9368a0a3f, type: 3}
-  unSelectedSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
+  selectedSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
+  unSelectedSprite: {fileID: 21300000, guid: ba5645ffe7fff5a4f8b6fef9368a0a3f, type: 3}
+  hoverSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
 --- !u!212 &212834128545776142
 SpriteRenderer:
   m_ObjectHideFlags: 1
