@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityTileMap;
+using System.Collections;
+using System.Collections.Generic;
 
 public class BuildWorldMap : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class BuildWorldMap : MonoBehaviour
 	private float timeLimit = 5f;
 	private bool villageDrawn = false;
 
+	public List<string> names = new List<string>();
+
+	private int indexOfName = 0;
+
     private void Awake()
     {
         m_tileMapBehaviour = GetComponent<TileMapBehaviour>();
@@ -31,6 +37,28 @@ public class BuildWorldMap : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+		names.Add ("Curvy");
+		names.Add ("Angry");
+		names.Add ("Bed");
+		names.Add ("Acoustics");
+		names.Add ("Breathe");
+		names.Add ("Blush");
+		names.Add ("Cruel");
+		names.Add ("Auspicious");
+		names.Add ("Glove");
+		names.Add ("Ossified");
+		names.Add ("Scorch");
+		names.Add ("Hook");
+		names.Add ("Toy");
+		names.Add ("Freezing");
+		names.Add ("Spotted");
+		names.Add ("Quick");
+		names.Add ("Sticky");
+		names.Add ("Madly");
+		names.Add ("Bewildered");
+		names.Add ("Lively");
+		//TODO: Error handling. This won't crash for 60 days of game play
+
         // Create settings
         var meshSettings = new TileMeshSettings
         {
@@ -142,6 +170,8 @@ public class BuildWorldMap : MonoBehaviour
 	{
 		var village = Instantiate(villageParent);
 		village.transform.position = new Vector3(x, y);
+		village.GetComponent<Village> ().name = names [indexOfName];
+		indexOfName += 1;
 
 		for (float j = 0f; j < 1f; j+= (2f / 3)) 
 		{

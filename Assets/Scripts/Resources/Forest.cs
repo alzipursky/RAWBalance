@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Forest : Resource {
 
+	private float elapsedTime = 0f;
+
 	// Use this for initialization
 	void Start () {
 		associatedEnergyType = "wood";
@@ -18,6 +20,11 @@ public class Forest : Resource {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (elapsedTime > 5f) {
+			elapsedTime = 0f;
+			totalPotentialEnergy += 1;
+		} else {
+			elapsedTime += Time.deltaTime;
+		}
 	}
 }
