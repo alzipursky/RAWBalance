@@ -67,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: 33f3fc1b7efe74f01b9e07fd73b3d4fd, type: 3}
   unSelectedSprite: {fileID: 21300000, guid: 23c18a2d221d8e840b88e816d673c5a5, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 33f3fc1b7efe74f01b9e07fd73b3d4fd, type: 3}
 --- !u!114 &114847523027495816
 MonoBehaviour:
   m_ObjectHideFlags: 1

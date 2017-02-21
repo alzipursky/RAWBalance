@@ -10,9 +10,11 @@ public class Settlement : MonoBehaviour {
 	//protected string energyTypeDemanded;
 	protected int perBuildingEnergyUnitsDemanded;
 	protected Dictionary<string, int> totalResourceDemand;
+	protected List<GameObject> resourceSources = new List<GameObject>();
 
 	public Sprite selectedSprite;
 	public Sprite unSelectedSprite;
+	public Sprite hoverSprite;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +23,11 @@ public class Settlement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void AddResourceSource(GameObject obj)
+	{
+		resourceSources.Add(obj);
 	}
 
 	public List<string> GetEnergyTypeDemanded()
@@ -62,40 +69,69 @@ public class Settlement : MonoBehaviour {
 		totalResourceDemand[resource] = amount;
 	}
 
+	void OnMouseExit(){
+
+		if (gameObject.transform.parent == null) {
+			foreach (GameObject source in resourceSources) {
+				source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+			}
+
+		} else {
+			var par = gameObject.transform.parent.GetComponent<Settlement> ();
+			foreach (GameObject source in par.resourceSources) {
+				source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+			}
+		}
+
+	}
 
 	void OnMouseOver()
 	{
-		if (Input.GetMouseButtonDown(1)) 
-		{
+		if (Input.GetMouseButtonDown (1)) {
 			var objectTag = gameObject.tag;
 
 			bool notAlreadySelected = true;
 
 			foreach (var obj in GameObject.FindGameObjectsWithTag(objectTag)) {
-				if (obj.GetComponent<Settlement>().GetSelected()) {
-					notAlreadySelected = false;;
+				if (obj.GetComponent<Settlement> ().GetSelected ()) {
+					notAlreadySelected = false;
+					;
 					break;
 				}
 			}
 
 			if (gameObject.transform.parent == null) {
-				if (!GetSelected()) {
+				if (!GetSelected ()) {
 					if (notAlreadySelected) {
-						SetSelected(!GetSelected());
+						SetSelected (!GetSelected ());
 					}
 				} else {
-					SetSelected(!GetSelected());
+					SetSelected (!GetSelected ());
 				}
 			} else {
-				var par = gameObject.transform.parent.GetComponent<Settlement>();
-				if (!par.GetSelected()) {
+				var par = gameObject.transform.parent.GetComponent<Settlement> ();
+				if (!par.GetSelected ()) {
 					if (notAlreadySelected) {
-						par.SetSelected(!par.GetSelected());
+						par.SetSelected (!par.GetSelected ());
 					}
 				} else {
-					par.SetSelected(!par.GetSelected());
+					par.SetSelected (!par.GetSelected ());
 				}
 			}
+		} else {
+
+			if (gameObject.transform.parent == null) {
+				foreach (GameObject source in resourceSources) {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().hoverSprite;
+				}
+					
+			} else {
+				var par = gameObject.transform.parent.GetComponent<Settlement> ();
+				foreach (GameObject source in par.resourceSources) {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().hoverSprite;
+				}
+			}
+				
 		}
 	}
 }

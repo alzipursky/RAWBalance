@@ -19,6 +19,7 @@ public class AttachSettlement : MonoBehaviour {
 						s.AddResourceDestination(obj);	
 						s.SetSelected(false);
 						obj.GetComponent<Settlement>().SetSelected(false);
+						obj.GetComponent<Settlement> ().AddResourceSource (gameObject);
 						//Debug.Log("Attached");
 					}
 				} else {

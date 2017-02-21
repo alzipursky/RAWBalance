@@ -26,16 +26,30 @@ public class DisplayStructureStats : MonoBehaviour {
 
 //		GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format("Total {0} potential: {1}",energyType,totalDemand), style);
 
-		bool connected = false; // Update this
+		bool chopping = false;
+		bool shipping = false;
 
-		if (connected) {
-			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("In production"), style);
+		if (gameObject.GetComponent<Structure> ().GetResourceSource()) {
+			chopping = true;
+		}
 
-		} else {
+		if (gameObject.GetComponent<Structure> ().GetResourceDestinations().Count > 0) {
+			shipping = true;
+		}
+			
+		if (chopping && !shipping) {
+			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Chopping Wood"), style);
+
+		} else if (chopping && shipping) {
+			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Producing and Selling Wood"), style);
+
+		} else if (shipping && !chopping) {
+			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Connected to Village"), style);
+
+		} else if (!shipping && !chopping) {
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), string.Format ("Inactive"), style);
 
 		}
-
 	}
 
 	void OnMouseOver(){

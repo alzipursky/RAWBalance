@@ -25,12 +25,22 @@ public class AttachResource : MonoBehaviour {
 						obj.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType() && 
 						obj != s.GetResourceSource()) {
 						// if it is then set this resoruce as that structure's resource source
+
+						GameObject source = s.GetResourceSource ();
+						if (source) {
+							source.GetComponent<Resource> ().RemoveDestination (gameObject);
+							foreach (Transform child in source.transform){
+								child.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Resource>().unSelectedSprite;
+							}
+						}
+
 						s.SetResourceSource(obj);
 						// unselect the structure
 						s.SetSelected(false);
 						// unselect the resource
 						obj.GetComponent<Resource>().SetSelected(false);
 						//Debug.Log("attached");
+						obj.GetComponent<Resource>().AddDestination(gameObject);
 					}
 				} else {
 					if (obj.transform.parent.GetComponent<Resource>().GetSelected() && 
@@ -39,6 +49,7 @@ public class AttachResource : MonoBehaviour {
 						s.SetResourceSource(obj.transform.parent.gameObject);
 						s.SetSelected(false);
 						obj.transform.parent.GetComponent<Resource>().SetSelected(false);
+
 						//Debug.Log("attached");
 					}
 				}
