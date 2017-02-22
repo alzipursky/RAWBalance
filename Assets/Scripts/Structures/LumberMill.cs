@@ -15,6 +15,7 @@ public class LumberMill : Structure {
 		fixedOperatingCosts = 50;
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
+		currentlyProducing = true;
 	}
 
 	void Start () {
@@ -32,7 +33,7 @@ public class LumberMill : Structure {
 		}
 
 		if (resourceSource != null) {
-			if (elapsedTime > 2f) {
+			if (elapsedTime > 2f && currentlyProducing) {
 				
 				var gold = PlayerPrefs.GetInt("gold");
 				PlayerPrefs.SetInt("gold", gold - fixedOperatingCosts);

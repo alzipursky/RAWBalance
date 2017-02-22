@@ -6,6 +6,7 @@ public class Structure : MonoBehaviour {
 
 	protected bool built;
 	protected bool selected;
+	protected bool currentlyProducing;
 
 	protected int price;
 	protected float processingTime;
@@ -89,6 +90,16 @@ public class Structure : MonoBehaviour {
 		return selected;
 	}
 
+	public bool GetCurrentlyProducing()
+	{
+		return currentlyProducing;
+	}
+
+	public void SetCurrentlyProducing(bool b)
+	{
+		currentlyProducing = b;
+	}
+
 	public GameObject GetResourceSource()
 	{
 		return resourceSource;
@@ -165,6 +176,15 @@ public class Structure : MonoBehaviour {
 					}
 				} else {
 					par.SetSelected (!par.GetSelected ());
+				}
+			}
+		} else if (Input.GetMouseButtonDown(0)){
+			if (resourceSource != null) {
+				if (gameObject.transform.parent == null) {
+					SetCurrentlyProducing(!GetCurrentlyProducing());
+				} else {
+					var par = gameObject.transform.parent.GetComponent<Structure> ();
+					par.SetCurrentlyProducing(!par.GetCurrentlyProducing());
 				}
 			}
 		} else {
