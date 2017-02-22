@@ -18,6 +18,8 @@ public class Settlement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+
 	}
 
 	// Update is called once per frame
@@ -72,14 +74,31 @@ public class Settlement : MonoBehaviour {
 	void OnMouseExit(){
 
 		if (gameObject.transform.parent == null) {
+
 			foreach (GameObject source in resourceSources) {
-				source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+				bool isSelected = source.GetComponent<Structure>().GetSelected();
+
+				if (isSelected) {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().selectedSprite;
+
+				} else {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+
+				}
+
 			}
 
 		} else {
 			var par = gameObject.transform.parent.GetComponent<Settlement> ();
 			foreach (GameObject source in par.resourceSources) {
-				source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+				bool isSelected = source.GetComponent<Structure>().GetSelected();
+				if (isSelected) {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().selectedSprite;
+
+				} else {
+					source.GetComponent<SpriteRenderer> ().sprite = source.GetComponent<Structure>().unSelectedSprite;
+
+				}
 			}
 		}
 

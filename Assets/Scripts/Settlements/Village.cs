@@ -5,6 +5,8 @@ using UnityEngine;
 public class Village : Settlement {
 
 	private float elapsedTime = 0f;
+	protected string name;
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +16,11 @@ public class Village : Settlement {
 		perBuildingEnergyUnitsDemanded = 5;
 		totalResourceDemand = new Dictionary<string, int>();
 		totalResourceDemand["wood"] = perBuildingEnergyUnitsDemanded * transform.childCount;
+
 	}
-	
+
+
+
 	// Update is called once per frame
 	void Update () {
 		if (elapsedTime > 3f) {
