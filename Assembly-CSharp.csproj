@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Structures\LumberMill.cs" />
      <Compile Include="Assets\Scripts\Structures\Structure.cs" />
      <Compile Include="Assets\Scripts\Tile Map\BuildWorldMap.cs" />
+     <Compile Include="Assets\Scripts\UI\ChildDisplayScript.cs" />
      <Compile Include="Assets\Scripts\UI\SetBuildScript.cs" />
      <Compile Include="Assets\Scripts\UI\TopBarScript.cs" />
  <Reference Include="UnityEngine.UI">

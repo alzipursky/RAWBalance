@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212355649550719610}
   - component: {fileID: 65220659005307286}
   - component: {fileID: 114050878682950938}
+  - component: {fileID: 114432595114524142}
   m_Layer: 0
   m_Name: Trees
   m_TagString: Resource
@@ -68,6 +69,17 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: 33f3fc1b7efe74f01b9e07fd73b3d4fd, type: 3}
   unSelectedSprite: {fileID: 21300000, guid: 23c18a2d221d8e840b88e816d673c5a5, type: 3}
   hoverSprite: {fileID: 21300000, guid: 33f3fc1b7efe74f01b9e07fd73b3d4fd, type: 3}
+--- !u!114 &114432595114524142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768265487750410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15faf53a797f5430fbea8585c6f0120b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212355649550719610
 SpriteRenderer:
   m_ObjectHideFlags: 1

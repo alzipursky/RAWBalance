@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212834128545776142}
   - component: {fileID: 65476384812610072}
   - component: {fileID: 114225793000763306}
+  - component: {fileID: 114735888916293052}
   m_Layer: 0
   m_Name: Coal
   m_TagString: Resource
@@ -68,6 +69,17 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
   unSelectedSprite: {fileID: 21300000, guid: ba5645ffe7fff5a4f8b6fef9368a0a3f, type: 3}
   hoverSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
+--- !u!114 &114735888916293052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474476793164436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15faf53a797f5430fbea8585c6f0120b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212834128545776142
 SpriteRenderer:
   m_ObjectHideFlags: 1

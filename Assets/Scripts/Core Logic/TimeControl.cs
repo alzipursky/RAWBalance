@@ -14,7 +14,7 @@ public class TimeControl : MonoBehaviour {
 	private float timeAccelerator = 100000f;
 	private string date;
 
-	private bool added = false;
+	//private bool added = false;
 
 	private float elapsedTime = 0f;
 

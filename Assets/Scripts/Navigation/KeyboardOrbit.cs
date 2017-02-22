@@ -24,6 +24,7 @@ public class KeyboardOrbit : MonoBehaviour {
 	private float z = -20f;
 
 	private float moveSpeed = 0.025f;
+	private int display;
 
     public void Start () {
         // Make the rigid body not change rotation
@@ -32,8 +33,23 @@ public class KeyboardOrbit : MonoBehaviour {
 
 		transform.position = new Vector3 (x, y, z);
 		Camera.main.orthographicSize = maxZoomOut;
+		PlayerPrefs.SetInt("display", 0);
 
     }
+
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.E)) {
+			display = PlayerPrefs.GetInt("display", display);
+			if (display > 0) {
+				PlayerPrefs.SetInt("display", 0);
+
+			} else {
+				PlayerPrefs.SetInt("display", 1);
+
+			}
+		}
+
+	}
 
     public void LateUpdate () {
         if (target) {
