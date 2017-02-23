@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
   unSelectedSprite: {fileID: 21300000, guid: ba5645ffe7fff5a4f8b6fef9368a0a3f, type: 3}
-  hoverSprite: {fileID: 21300000, guid: fc7aabf50f9e02f40977929f167a0609, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 29fc6b73f1a704807b5f88a20038b143, type: 3}
 --- !u!114 &114626634607760898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,3 +79,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d05369d31ba14889ba963c5a5bba7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseOver: 0
