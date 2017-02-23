@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class SetBuildScript : MonoBehaviour {
 
-	private int build;
-
 	public Dropdown dropDown;
 
 	void Start()
@@ -15,6 +13,13 @@ public class SetBuildScript : MonoBehaviour {
 		dropDown.onValueChanged.AddListener(delegate {
 			myDropdownValueChangedHandler(dropDown);
 		});
+	}
+
+	void Update(){
+		string build = PlayerPrefs.GetString ("build");
+		if (build == "None") {
+			dropDown.value = 0;
+		}
 	}
 
 	void Destroy() {

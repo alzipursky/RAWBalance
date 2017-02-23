@@ -52,6 +52,7 @@ public class AddStructure : MonoBehaviour {
 
 				gold -= structurePrice;
 				PlayerPrefs.SetInt("gold", gold);
+				PlayerPrefs.SetString ("build", "None");
 			} else 
 			{
 				drawGui = true;
