@@ -20,7 +20,7 @@ public class BuildWorldMap : MonoBehaviour
     private TileMapBehaviour m_tileMapBehaviour;
 
 	private float elapsedTime = 0f;
-	private float timeLimit = 5f;
+	private float timeLimit = 7f;
 	private bool villageDrawn = false;
 
 	public List<string> names = new List<string>();
@@ -113,7 +113,7 @@ public class BuildWorldMap : MonoBehaviour
 			DrawSmallVillageatPoint(point.x,point.y);
 			//villageDrawn = true;
 			elapsedTime = 0f;
-			timeLimit *= 2f;
+			timeLimit *= 2.5f;
 		}
 	}
 
