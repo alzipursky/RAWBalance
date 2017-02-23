@@ -7,6 +7,7 @@ public class Village : Settlement {
 	private float elapsedTime = 0f;
 	protected string name;
 	private int demandIncrease = 5;
+	private float accelerationElapsedTime = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,18 +21,23 @@ public class Village : Settlement {
 	}
 
 
-
 	// Update is called once per frame
 	void Update () {
 		if (elapsedTime > 3f) {
 			foreach (var energyType in energyTypeDemanded) {
 				totalResourceDemand[energyType] += demandIncrease;
 			}
-			demandIncrease += 1;
 			//would deplete the forest right here also
 			elapsedTime = 0f;
 		} else {
 			elapsedTime += Time.deltaTime;
+		}
+
+		if (accelerationElapsedTime > 45f) {
+			demandIncrease += 1;
+			accelerationElapsedTime = 0f;
+		} else {
+			accelerationElapsedTime += Time.deltaTime;
 		}
 
 	}
