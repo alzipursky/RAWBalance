@@ -33,7 +33,7 @@ public class Village : Settlement {
 			elapsedTime += Time.deltaTime;
 		}
 
-		if (accelerationElapsedTime > 45f) {
+		if (accelerationElapsedTime > 25f) {
 			demandIncrease += 1;
 			accelerationElapsedTime = 0f;
 		} else {
