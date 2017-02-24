@@ -8,7 +8,8 @@ public class Settlement : MonoBehaviour {
 
 	protected List<string> energyTypeDemanded;
 	//protected string energyTypeDemanded;
-	protected int perBuildingEnergyUnitsDemanded;
+	//protected int perBuildingEnergyUnitsDemanded;
+	protected Dictionary<string,int> perBuildingEnergyUnitsDemanded;
 	protected Dictionary<string, int> totalResourceDemand;
 	protected List<GameObject> resourceSources = new List<GameObject>();
 
@@ -37,9 +38,9 @@ public class Settlement : MonoBehaviour {
 		return energyTypeDemanded;
 	}
 
-	public int GetPerBuildingEnergyUnitsDemanded()
+	public int GetPerBuildingEnergyUnitsDemanded(string resource)
 	{
-		return perBuildingEnergyUnitsDemanded;
+		return perBuildingEnergyUnitsDemanded[resource];
 	}
 
 	public void SetSelected(bool b)

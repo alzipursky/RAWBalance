@@ -9,6 +9,7 @@ TagManager:
   - Lumber Mill
   - Resource
   - Settlement
+  - Coal Mine
   layers:
   - Default
   - TransparentFX

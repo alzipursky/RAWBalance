@@ -2,29 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LumberMill : Structure {
-
-	// Use this for initialization
-	//test
+public class CoalMine : Structure {
 
 	private float elapsedTime = 0f;
 
-	void Awake()
-	{
-		price = 7500;
-		fixedOperatingCosts = 75;
-		associatedEnergyType = "wood";
-		gameObject.tag = "Lumber Mill";
+	// Use this for initialization
+	void Awake () {
+		price = 15000;
+		fixedOperatingCosts = 150;
+		associatedEnergyType = "coal";
+		gameObject.tag = "Coal Mine";
 		currentlyProducing = true;
-		resourcePrice = 5;
+		resourcePrice = 15;
 	}
 
-	void Start () {
-		//price = 30000;
-		fixedOperatingCosts = 75;
-		associatedEnergyType = "wood";
-		gameObject.tag = "Lumber Mill";
-		resourcePrice = 5;
+	void Start(){
+		fixedOperatingCosts = 150;
+		associatedEnergyType = "coal";
+		gameObject.tag = "Coal Mine";
+		resourcePrice = 15;
 	}
 
 	// Update is called once per frame
@@ -60,18 +56,18 @@ public class LumberMill : Structure {
 		if (resourceDestinations.Count != 0) {
 			//would subtract from supply of wood and subtract from each settlement's demand here
 			foreach (var dest in resourceDestinations) {
-				var woodDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("wood");
+				var woodDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("coal");
 				var gold = PlayerPrefs.GetInt("gold");
 				if ((resourceSupply >= woodDemanded) && resourceSupply < 100) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if ((resourceSupply >= woodDemanded) && resourceSupply >= 100) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if (resourceSupply < woodDemanded) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded - resourceSupply);
+					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", woodDemanded - resourceSupply);
 					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice);
 					resourceSupply = 0;
 				}
