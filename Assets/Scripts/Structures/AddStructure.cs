@@ -7,14 +7,18 @@ using UnityEngine.EventSystems;
 public class AddStructure : MonoBehaviour {
 
 	public List<GameObject> structurePrefabs;
-	public MonoBehaviour scriptP;
+	public Texture lumberMillTexture;
+	public Texture coalMineTexture;
 	private Vector3 target;
 
 	private Vector3 guiLocation;
 	private bool drawGui = false;
+	private bool drawMouseObj = false;
 	private float timeSinceDraw = 0;
 
 	private GUIStyle style = new GUIStyle();
+
+	private Texture textureToDraw;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +30,28 @@ public class AddStructure : MonoBehaviour {
 
 		var structureTag = PlayerPrefs.GetString("build");
 
+		if (structureTag == "None") {
+			drawMouseObj = false;
+		}
+
+		if (structureTag != "None" && !EventSystem.current.IsPointerOverGameObject()) {
+			foreach (var st in structurePrefabs) {
+				if (st.CompareTag(structureTag)) {
+					drawMouseObj = true;
+					guiLocation = Input.mousePosition;
+					if (structureTag == "Lumber Mill") {
+						textureToDraw = lumberMillTexture;
+					} else if (structureTag == "Coal Mine") {
+						textureToDraw = coalMineTexture;
+					}
+					break;
+				}
+			}
+		}
+
 		if (Input.GetMouseButtonDown(0) && (structureTag != "None") && !EventSystem.current.IsPointerOverGameObject())
 		{
+			drawMouseObj = false;
 			var gold = PlayerPrefs.GetInt("gold");
 			var structurePrice = 0;
 			GameObject structurePrefab = null;
@@ -80,5 +104,11 @@ public class AddStructure : MonoBehaviour {
 		{
 			GUI.Label(new Rect(guiLocation.x + 2, -(guiLocation.y - Screen.height), 100, 100), "You don't have enough gold to build that", style);
 		}
+
+		if (drawMouseObj) 
+		{
+			GUI.DrawTexture(new Rect(guiLocation.x, -(guiLocation.y - Screen.height), 40, 40),textureToDraw);
+		}
+
 	}
 }
