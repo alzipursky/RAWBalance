@@ -81,6 +81,8 @@ public class BuildWorldMap : MonoBehaviour
         DrawLakeatPoint(10f, 10f);
         DrawLakeatPoint(2f, 8f);
         DrawCoalatPoint(35f, 35f);
+        DrawCoalatPoint(10f, 47f);
+        DrawCoalatPoint(20f, 55f);
 
 		DrawSmallVillageatPoint(22f,22f);
 
