@@ -13,10 +13,15 @@ public class Village : Settlement {
 	void Start () {
 		energyTypeDemanded = new List<string>();
 		energyTypeDemanded.Add("wood");
+		energyTypeDemanded.Add("coal");
 
-		perBuildingEnergyUnitsDemanded = demandIncrease;
+		perBuildingEnergyUnitsDemanded = new Dictionary<string, int>();
+		perBuildingEnergyUnitsDemanded["wood"] = demandIncrease;
+		perBuildingEnergyUnitsDemanded["coal"] = demandIncrease;
+
 		totalResourceDemand = new Dictionary<string, int>();
-		totalResourceDemand["wood"] = perBuildingEnergyUnitsDemanded * transform.childCount;
+		totalResourceDemand["wood"] = perBuildingEnergyUnitsDemanded["wood"] * transform.childCount;
+		totalResourceDemand["coal"] = perBuildingEnergyUnitsDemanded["coal"] * transform.childCount;
 
 	}
 

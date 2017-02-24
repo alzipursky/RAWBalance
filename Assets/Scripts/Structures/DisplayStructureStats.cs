@@ -90,7 +90,7 @@ public class DisplayStructureStats : MonoBehaviour {
 
 
 			if (chopping) {
-				choppingStatus = string.Format ("Production Status: Chopping Wood");
+				choppingStatus = string.Format ("Production Status: Producing");
 			} else {
 				choppingStatus = string.Format ("Production Status: Paused");
 			}

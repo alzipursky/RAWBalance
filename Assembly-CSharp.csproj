@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Structures\AddStructure.cs" />
      <Compile Include="Assets\Scripts\Structures\AttachResource.cs" />
      <Compile Include="Assets\Scripts\Structures\AttachSettlement.cs" />
+     <Compile Include="Assets\Scripts\Structures\CoalMine.cs" />
      <Compile Include="Assets\Scripts\Structures\DisplayStructureStats.cs" />
      <Compile Include="Assets\Scripts\Structures\LumberMill.cs" />
      <Compile Include="Assets\Scripts\Structures\Structure.cs" />

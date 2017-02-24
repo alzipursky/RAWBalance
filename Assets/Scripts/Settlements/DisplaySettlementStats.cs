@@ -37,7 +37,7 @@ public class DisplaySettlementStats : MonoBehaviour {
 				// going to need to fix this when they actually demand multiple resources
 				GUI.Label(new Rect(point.x, -(point.y - Screen.height) + space + space*i, 100, 100), string.Format("Energy Type Demanded: {0}",energyDemanded), style);
 				GUI.Label(new Rect(point.x, -(point.y - Screen.height) + 2*space + space*i, 100, 100), string.Format("Quantity Demanded: {0}",totalDemand), style);
-				i += 1;
+				i += 2;
 			}
 		}
 	}
