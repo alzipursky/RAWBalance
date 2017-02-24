@@ -137,7 +137,7 @@ public class BuildWorldMap : MonoBehaviour
 			DrawSmallVillageatPoint(point.x,point.y);
 			//villageDrawn = true;
 			elapsedTime = 0f;
-			timeLimit *= 1.0f; //original = 2.5f
+			timeLimit *= 2.5f;
 		}
 	}
 

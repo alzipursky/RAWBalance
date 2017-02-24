@@ -42,8 +42,8 @@ public class BottomBarScript : MonoBehaviour {
 	void Start () {
 		PlayerPrefs.SetInt ("woodCost", 5);
 		PlayerPrefs.SetInt ("coalCost", 15);
-		woodInput.textComponent.color = Color.green;
-		coalInput.textComponent.color = Color.green;
+		woodInput.textComponent.color = Color.black;
+		coalInput.textComponent.color = Color.black;
 		woodInput.text = "5";
 		coalInput.text = "15";
 	}
@@ -60,7 +60,7 @@ public class BottomBarScript : MonoBehaviour {
 			if (currWood != actualWood) {
 				woodInput.textComponent.color = Color.gray;
 			} else {
-				woodInput.textComponent.color = Color.green;
+				woodInput.textComponent.color = Color.black;
 			}
 		}
 
@@ -68,7 +68,7 @@ public class BottomBarScript : MonoBehaviour {
 			if (currCoal != actualCoal) {
 				coalInput.textComponent.color = Color.gray;
 			} else {
-				coalInput.textComponent.color = Color.green;
+				coalInput.textComponent.color = Color.black;
 			}
 		}
 	}
