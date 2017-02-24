@@ -22,7 +22,8 @@ public class BottomBarScript : MonoBehaviour {
 				mill.GetComponent<Structure> ().SetResourcePrice (wood);
 			}
 		} else {
-			woodInput.text = "";
+			int w = PlayerPrefs.GetInt("woodCost");
+			woodInput.text = w.ToString();
 		}
 
 		int coal;
@@ -34,7 +35,8 @@ public class BottomBarScript : MonoBehaviour {
 				mine.GetComponent<Structure> ().SetResourcePrice (coal);
 			}
 		} else {
-			coalInput.text = "";
+			int c = PlayerPrefs.GetInt("coalCost");
+			coalInput.text = c.ToString();
 		}
 	}
 
