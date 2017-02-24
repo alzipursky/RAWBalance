@@ -15,7 +15,7 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject villageParent;
     public GameObject lake;
     public GameObject mountainParent;
-	public int xLimit = 1;
+    public int xLimit = 1;
 	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
 
@@ -102,7 +102,7 @@ public class BuildWorldMap : MonoBehaviour
 				foreach (var obj in GameObject.FindObjectsOfType<GameObject>()) {
 					if (obj.activeInHierarchy && 
 						(point.x == obj.transform.position.x) || (point.y == obj.transform.position.y)) {
-						point = new Vector3(Random.Range(0,xLimit),Random.Range(0,yLimit));
+						point = new Vector3(Random.Range(0,xLimit*4),Random.Range(0,yLimit*4));
 						pointOK = false;
 						break;
 					}
@@ -113,7 +113,7 @@ public class BuildWorldMap : MonoBehaviour
 			DrawSmallVillageatPoint(point.x,point.y);
 			//villageDrawn = true;
 			elapsedTime = 0f;
-			timeLimit *= 2.5f;
+			timeLimit *= 1.0f; //original = 2.5f
 		}
 	}
 
