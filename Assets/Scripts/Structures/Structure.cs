@@ -42,6 +42,11 @@ public class Structure : MonoBehaviour {
 		return price;
 	}
 
+	public void SetPrice(int p)
+	{
+		price = p;
+	}
+
 	public float GetProcessingTime()
 	{
 		return processingTime;
