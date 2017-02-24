@@ -94,18 +94,42 @@ public class BuildWorldMap : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 		} else 
 		{
-			var point = new Vector3(Random.Range(0,xLimit),Random.Range(0,yLimit));
-			var pointOK = false;
+            var point = new Vector3(Random.Range(4, (xLimit * 4) - 4), Random.Range(0, (yLimit * 4)) - 4);
+            var pointOK = false;
 
 			while (!pointOK) 
 			{
 				foreach (var obj in GameObject.FindObjectsOfType<GameObject>()) {
-					if (obj.activeInHierarchy && 
-						(point.x == obj.transform.position.x) || (point.y == obj.transform.position.y)) {
-						point = new Vector3(Random.Range(0,xLimit*4),Random.Range(0,yLimit*4));
-						pointOK = false;
-						break;
-					}
+                    if (obj.activeInHierarchy && obj.GetComponent<Collider>() != null) {
+
+
+                        var colli = obj.GetComponent<Collider>();
+
+                        var colli_list = obj.GetComponentInParent<Collider>();
+
+                        var bounds = colli_list.bounds;
+
+                        if (bounds.Contains(point))
+
+                        {
+
+                           // int threshold = 5;
+                            point = new Vector3(Random.Range(4, (xLimit * 4)-4), Random.Range(0, (yLimit * 4))-4);
+                            //point.x += bounds.max.x + threshold;
+                            //point.y += bounds.max.y + threshold;
+
+                            pointOK = false;
+                            break;
+                        }
+
+						//pointOK = false;
+
+                
+
+                       // break;
+
+
+                    }
 					pointOK = true;
 				}
 			}
