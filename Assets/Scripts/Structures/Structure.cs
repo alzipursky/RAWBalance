@@ -13,6 +13,8 @@ public class Structure : MonoBehaviour {
 	protected int fixedOperatingCosts;
 	protected int resourceSupply;
 
+	protected int resourcePrice;
+
 	protected string associatedEnergyType;
 
 	protected GameObject resourceSource;
@@ -35,6 +37,16 @@ public class Structure : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	public int GetResourcePrice()
+	{
+		return resourcePrice;
+	}
+
+	public void SetResourcePrice(int p)
+	{
+		resourcePrice = p;
 	}
 
 	public int GetPrice()

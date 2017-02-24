@@ -16,6 +16,7 @@ public class LumberMill : Structure {
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
 		currentlyProducing = true;
+		resourcePrice = 5;
 	}
 
 	void Start () {
@@ -23,6 +24,7 @@ public class LumberMill : Structure {
 		fixedOperatingCosts = 75;
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
+		resourcePrice = 5;
 	}
 
 	// Update is called once per frame
@@ -62,15 +64,15 @@ public class LumberMill : Structure {
 				var gold = PlayerPrefs.GetInt("gold");
 				if ((resourceSupply >= woodDemanded) && resourceSupply < 100) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * 5);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if ((resourceSupply >= woodDemanded) && resourceSupply >= 100) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * 5);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if (resourceSupply < woodDemanded) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * 5);
+					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice);
 					resourceSupply = 0;
 				}
 			}

@@ -8,7 +8,7 @@ public class KeyboardOrbit : MonoBehaviour {
     //public float distance = -20.0f;
     public float zoomSpd = 2.0f;
 	private float maxZoomIn = 5.0f;
-	private float maxZoomOut = 20.0f;
+	private float maxZoomOut = 30.0f;
 
     public float xSpeed = 0.5f;
     public float ySpeed = 0.5f;
@@ -32,7 +32,7 @@ public class KeyboardOrbit : MonoBehaviour {
             GetComponent<Rigidbody>().freezeRotation = true;
 
 		transform.position = new Vector3 (x, y, z);
-		Camera.main.orthographicSize = maxZoomOut;
+		Camera.main.orthographicSize = 20;
 		PlayerPrefs.SetInt("display", 0);
 
     }
