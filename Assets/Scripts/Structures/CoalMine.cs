@@ -13,12 +13,14 @@ public class CoalMine : Structure {
 		associatedEnergyType = "coal";
 		gameObject.tag = "Coal Mine";
 		currentlyProducing = true;
+		resourcePrice = 15;
 	}
 
 	void Start(){
 		fixedOperatingCosts = 150;
 		associatedEnergyType = "coal";
 		gameObject.tag = "Coal Mine";
+		resourcePrice = 15;
 	}
 
 	// Update is called once per frame
@@ -58,15 +60,15 @@ public class CoalMine : Structure {
 				var gold = PlayerPrefs.GetInt("gold");
 				if ((resourceSupply >= woodDemanded) && resourceSupply < 100) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * 5);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if ((resourceSupply >= woodDemanded) && resourceSupply >= 100) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * 5);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
 					resourceSupply -= woodDemanded;
 				} else if (resourceSupply < woodDemanded) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", woodDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * 5);
+					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice);
 					resourceSupply = 0;
 				}
 			}
