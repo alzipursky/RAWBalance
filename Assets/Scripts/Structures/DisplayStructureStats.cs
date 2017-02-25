@@ -49,6 +49,7 @@ public class DisplayStructureStats : MonoBehaviour {
 					foreach (GameObject dest in destinations) {
 						if (index == 0) {
 							cities += dest.GetComponent<Village>().name;
+							cities += " (" + ((int)Vector3.Distance(transform.position, dest.transform.position)).ToString() + " gold to ship)";
 						} else {
 							cities += ", ";
 

@@ -58,17 +58,18 @@ public class CoalMine : Structure {
 			foreach (var dest in resourceDestinations) {
 				var woodDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("coal");
 				var gold = PlayerPrefs.GetInt("gold");
-				if ((resourceSupply >= woodDemanded) && resourceSupply < 100) {
+				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
+				if ((resourceSupply >= woodDemanded) && (woodDemanded > 0) && (resourceSupply < 100)) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice - shippingCost);
 					resourceSupply -= woodDemanded;
-				} else if ((resourceSupply >= woodDemanded) && resourceSupply >= 100) {
+				} else if ((resourceSupply >= woodDemanded) && (woodDemanded > 0) && (resourceSupply >= 100)) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice);
+					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice - shippingCost);
 					resourceSupply -= woodDemanded;
 				} else if (resourceSupply < woodDemanded) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", woodDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice);
+					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
 					resourceSupply = 0;
 				}
 			}
