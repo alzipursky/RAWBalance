@@ -49,7 +49,7 @@ public class AddStructure : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetMouseButtonDown(0) && (structureTag != "None") && !EventSystem.current.IsPointerOverGameObject())
+		if (Input.GetMouseButtonDown(0) && (structureTag != "None") && !EventSystem.current.IsPointerOverGameObject() && PlayerPrefs.GetString("canBuild")=="true")
 		{
 			drawMouseObj = false;
 			var gold = PlayerPrefs.GetInt("gold");
@@ -105,9 +105,9 @@ public class AddStructure : MonoBehaviour {
 			GUI.Label(new Rect(guiLocation.x + 2, -(guiLocation.y - Screen.height), 100, 100), "You don't have enough gold to build that", style);
 		}
 
-		if (drawMouseObj) 
+		if (drawMouseObj && PlayerPrefs.GetString("canBuild")=="true") 
 		{
-			GUI.DrawTexture(new Rect(guiLocation.x, -(guiLocation.y - Screen.height), 40, 40),textureToDraw);
+			GUI.DrawTexture(new Rect(guiLocation.x-9, -(guiLocation.y - Screen.height+22), 40, 40),textureToDraw);
 		}
 
 	}

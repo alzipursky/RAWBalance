@@ -138,6 +138,9 @@ public class Structure : MonoBehaviour {
 	}
 
 	void OnMouseExit() {
+
+		PlayerPrefs.SetString("canBuild", "true");
+
 		if (gameObject.transform.parent == null) {
 			foreach (GameObject destination in resourceDestinations) {
 				bool isSelected = destination.GetComponent<Settlement> ().GetSelected();
@@ -186,6 +189,9 @@ public class Structure : MonoBehaviour {
 
 	void OnMouseOver()
 	{
+
+		PlayerPrefs.SetString("canBuild", "false");
+
 		if (Input.GetMouseButtonDown (1)) {
 			var objectTag = gameObject.tag;
 
