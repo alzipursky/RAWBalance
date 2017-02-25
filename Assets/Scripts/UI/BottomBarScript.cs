@@ -7,6 +7,7 @@ public class BottomBarScript : MonoBehaviour {
 
 	public InputField woodInput;
 	public InputField coalInput;
+	public Text competitorText;
 
 	int woodCost;
 	int coalCost;
@@ -49,6 +50,17 @@ public class BottomBarScript : MonoBehaviour {
 		woodInput.textComponent.color = Color.black;
 		coalInput.textComponent.color = Color.black;
 
+		PlayerPrefs.SetInt ("competitorWoodCost", 5);
+		PlayerPrefs.SetInt ("competitorCoalCost", 15);
+
+		updateCompetitorText ();
+	}
+
+	void updateCompetitorText(){
+		int cWc = PlayerPrefs.GetInt("competitorWoodCost");
+		int cCc = PlayerPrefs.GetInt("competitorCoalCost");
+
+		competitorText.text = string.Format ("Competitor - Wood Price: {0} - Coal Price: {1}", cWc, cCc);
 	}
 
 	// Update is called once per frame
@@ -74,5 +86,7 @@ public class BottomBarScript : MonoBehaviour {
 				coalInput.textComponent.color = Color.black;
 			}
 		}
+		updateCompetitorText ();
+
 	}
 }

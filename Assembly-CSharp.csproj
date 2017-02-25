@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Core Logic\TimeControl.cs" />
      <Compile Include="Assets\Scripts\Map Features\Lake.cs" />
+     <Compile Include="Assets\Scripts\Navigation\CameraDrag.cs" />
      <Compile Include="Assets\Scripts\Navigation\KeyboardOrbit.cs" />
      <Compile Include="Assets\Scripts\Resources\DisplayResourceStats.cs" />
      <Compile Include="Assets\Scripts\Resources\Forest.cs" />
