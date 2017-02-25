@@ -2360,6 +2360,8 @@ MonoBehaviour:
     m_Options:
     - m_Text: None
       m_Image: {fileID: 0}
+    - m_Text: Forest
+      m_Image: {fileID: 0}
     - m_Text: Lumber Mill
       m_Image: {fileID: 0}
     - m_Text: Coal Mine
