@@ -35,6 +35,16 @@ public class AttachResource : MonoBehaviour {
 						}
 
 						s.SetResourceSource(obj);
+
+						int minDist = 0;
+						foreach (Transform child in obj.transform) {
+							int dist = (int)Vector3.Distance(child.position, s.transform.position);
+							if (dist < minDist) {
+								minDist = dist;
+							}
+						}
+						s.SetFixedOperatingCosts(s.GetFixedOperatingCosts() + minDist);
+
 						// unselect the structure
 						s.SetSelected(false);
 						// unselect the resource
@@ -47,6 +57,16 @@ public class AttachResource : MonoBehaviour {
 						obj.transform.parent.GetComponent<Resource>().GetAssociateEnergyType() == s.GetAssociatedEnergyType() && 
 						obj.transform.parent.gameObject != s.GetResourceSource()) {
 						s.SetResourceSource(obj.transform.parent.gameObject);
+
+						int minDist = 0;
+						foreach (Transform child in obj.transform.parent) {
+							int dist = (int)Vector3.Distance(child.position, s.transform.position);
+							if (dist < minDist) {
+								minDist = dist;
+							}
+						}
+						s.SetFixedOperatingCosts(s.GetFixedOperatingCosts() + minDist);
+
 						s.SetSelected(false);
 						obj.transform.parent.GetComponent<Resource>().SetSelected(false);
 

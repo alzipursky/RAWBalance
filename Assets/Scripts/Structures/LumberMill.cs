@@ -12,7 +12,7 @@ public class LumberMill : Structure {
 	void Awake()
 	{
 		price = 7500;
-		fixedOperatingCosts = 75;
+		fixedOperatingCosts = 55;
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
 		currentlyProducing = true;

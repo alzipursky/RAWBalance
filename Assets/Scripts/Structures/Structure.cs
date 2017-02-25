@@ -69,6 +69,11 @@ public class Structure : MonoBehaviour {
 		return fixedOperatingCosts;
 	}
 
+	public void SetFixedOperatingCosts(int cost)
+	{
+		fixedOperatingCosts = cost;
+	}
+
 	public int GetResourceSupply(){
 		return resourceSupply;
 	}

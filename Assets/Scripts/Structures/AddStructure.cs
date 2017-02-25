@@ -15,8 +15,10 @@ public class AddStructure : MonoBehaviour {
 	private bool drawGui = false;
 	private bool drawMouseObj = false;
 	private float timeSinceDraw = 0;
+	private int operatingCost;
+	private int distanceFactor;
 
-	private GUIStyle style = new GUIStyle();
+	GUIStyle style = new GUIStyle();
 
 	private Texture textureToDraw;
 
@@ -39,10 +41,34 @@ public class AddStructure : MonoBehaviour {
 				if (st.CompareTag(structureTag)) {
 					drawMouseObj = true;
 					guiLocation = Input.mousePosition;
+					guiLocation.z = 0;
+					var tmp = Instantiate(st);
+					operatingCost = tmp.GetComponent<Structure>().GetFixedOperatingCosts();
+					Destroy(tmp);
 					if (structureTag == "Lumber Mill") {
 						textureToDraw = lumberMillTexture;
+						int minDist = 9999999;
+						foreach (var obj in GameObject.FindGameObjectsWithTag("Resource")){
+							if (obj.GetComponent<Forest>()) {
+								int dist = (int)Vector3.Distance(Camera.main.ScreenToWorldPoint(guiLocation), obj.transform.position);
+								if (dist < minDist) {
+									minDist = dist;
+								}
+							}
+						}
+						distanceFactor = minDist;
 					} else if (structureTag == "Coal Mine") {
 						textureToDraw = coalMineTexture;
+						int minDist = 9999999;
+						foreach (var obj in GameObject.FindGameObjectsWithTag("Resource")){
+							if (obj.GetComponent<Mountain>()) {
+								int dist = (int)Vector3.Distance(Camera.main.ScreenToWorldPoint(guiLocation), obj.transform.position);
+								if (dist < minDist) {
+									minDist = dist;
+								}
+							}
+						}
+						distanceFactor = minDist;
 					}
 					break;
 				}
@@ -82,6 +108,7 @@ public class AddStructure : MonoBehaviour {
 				drawGui = true;
 				timeSinceDraw = 0;
 				guiLocation = Input.mousePosition;
+				guiLocation.z = 0;
 				ErrorMessagePopup();
 			}
 		}
@@ -99,6 +126,8 @@ public class AddStructure : MonoBehaviour {
 
 	void OnGUI()
 	{
+		style.normal.textColor = Color.white;
+		style.fontSize = 10 - (int) (Camera.main.orthographicSize / 10);
 		//Should eventually change this to GUI.Window or GUI.Box
 		if (drawGui) 
 		{
@@ -108,6 +137,7 @@ public class AddStructure : MonoBehaviour {
 		if (drawMouseObj && PlayerPrefs.GetString("canBuild")=="true") 
 		{
 			GUI.DrawTexture(new Rect(guiLocation.x-9, -(guiLocation.y - Screen.height+22), 40, 40),textureToDraw);
+			GUI.Label(new Rect(guiLocation.x-2, -(guiLocation.y - Screen.height+22), 40, 40),string.Format("Minimum Production Cost: {0}",operatingCost+distanceFactor),style);
 		}
 
 	}

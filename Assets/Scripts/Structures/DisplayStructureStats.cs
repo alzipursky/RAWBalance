@@ -103,7 +103,13 @@ public class DisplayStructureStats : MonoBehaviour {
 
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15, 100, 100), choppingStatus, style);
 			GUI.Label (new Rect (point.x, -(point.y - Screen.height) - 15 + space, 100, 100), shippingStatus, style);
-			GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15 + 2*space, 100, 100), string.Format("Total wood supply: {0}",wood), style);
+			if (chopping) {
+				GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15 + 2*space, 100, 100), string.Format("Cost to produce: {0} gold per 2 days",gameObject.GetComponent<Structure>().GetFixedOperatingCosts()), style);
+				GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15 + 3*space, 100, 100), string.Format("Total wood supply: {0}",wood), style);
+			} else {
+				GUI.Label(new Rect(point.x, -(point.y - Screen.height) - 15 + 2*space, 100, 100), string.Format("Total wood supply: {0}",wood), style);
+			}
+
 
 		}
 	}

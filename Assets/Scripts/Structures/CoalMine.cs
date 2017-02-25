@@ -9,7 +9,7 @@ public class CoalMine : Structure {
 	// Use this for initialization
 	void Awake () {
 		price = 15000;
-		fixedOperatingCosts = 150;
+		fixedOperatingCosts = 135;
 		associatedEnergyType = "coal";
 		gameObject.tag = "Coal Mine";
 		currentlyProducing = true;
