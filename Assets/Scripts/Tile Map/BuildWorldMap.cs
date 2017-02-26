@@ -140,7 +140,7 @@ public class BuildWorldMap : MonoBehaviour
             VillageGrowth();
             //villageDrawn = true;
             elapsedTime = 0f;
-			timeLimit *= 1.0f;
+			timeLimit *= 2.5f;
 
 
 		}
