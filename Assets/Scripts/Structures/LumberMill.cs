@@ -62,16 +62,17 @@ public class LumberMill : Structure {
 			foreach (var dest in resourceDestinations) {
 				var woodDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("wood");
 				var gold = PlayerPrefs.GetInt("gold");
+
+				var woodDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("wood", resourcePrice);
+				var woodToSell = Mathf.Min(woodDemanded, woodDemandedAtPrice);
+
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
-				if ((resourceSupply >= woodDemanded) && (woodDemanded > 0) && (resourceSupply < 100)) {
+//				if ((resourceSupply >= woodDemanded) && (woodDemanded > 0)) {
+				if ((resourceSupply >= woodToSell) && (woodToSell > 0)) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
 					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice - shippingCost);
 					resourceSupply -= woodDemanded;
-				} else if ((resourceSupply >= woodDemanded) && (woodDemanded > 0) && (resourceSupply >= 100)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice - shippingCost);
-					resourceSupply -= woodDemanded;
-				} else if (resourceSupply < woodDemanded) {
+				} else if (resourceSupply < woodToSell) {
 					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded - resourceSupply);
 					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
 					resourceSupply = 0;
