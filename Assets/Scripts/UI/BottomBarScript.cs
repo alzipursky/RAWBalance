@@ -74,6 +74,8 @@ public class BottomBarScript : MonoBehaviour {
 		competitorText.text = string.Format ("Competitor - Wood Price: {0} - Coal Price: {1}", cWc, cCc);
 	}
 
+	float flag = 0f;
+
 	// Update is called once per frame
 	void Update () {
 		int currWood = PlayerPrefs.GetInt("woodCost");
@@ -98,6 +100,54 @@ public class BottomBarScript : MonoBehaviour {
 			}
 		}
 		updateCompetitorText ();
+
+		if (flag >= 20f) {
+			flag = 0f;
+
+			float rnW = Random.Range(0.0f, 1.0f);
+			float rnC = Random.Range(0.0f, 1.0f);
+
+			int cWc = PlayerPrefs.GetInt("competitorWoodCost");
+			int cCc = PlayerPrefs.GetInt("competitorCoalCost");
+
+			if (rnW > 0.5f) { // Increase
+				if (cWc > 15) {
+					cWc -= 1;
+				} else {
+					cWc += 1;
+				}
+			} else { // Decrease
+				if (cWc < 4) {
+					cWc += 1;
+				} else {
+					cWc -= 1;
+				}
+			}
+
+			if (rnC > 0.5f) {
+				if (rnC > 28) {
+					rnC -= 1;
+				} else {
+					rnC += 1;
+				}
+			} else { // Decrease
+				if (rnC < 10) {
+					rnC += 1;
+				} else {
+					rnC -= 1;
+				}
+			}
+
+			PlayerPrefs.SetInt ("competitorWoodCost", cWc);
+			PlayerPrefs.SetInt ("competitorCoalCost", cCc);
+
+		} else {
+			flag += Time.deltaTime;
+
+		}
+
+
+
 
 	}
 }
