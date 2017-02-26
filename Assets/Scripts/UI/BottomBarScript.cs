@@ -16,11 +16,16 @@ public class BottomBarScript : MonoBehaviour {
 	
 		int wood;
 		if (int.TryParse (woodInput.text, out wood)) {
-			woodInput.textComponent.color = Color.black;
-			PlayerPrefs.SetInt ("woodCost", wood);
-			var lumbermills = GameObject.FindGameObjectsWithTag("Lumber Mill");
-			foreach (GameObject mill in lumbermills) {
-				mill.GetComponent<Structure> ().SetResourcePrice (wood);
+			if (wood > 0) {
+				woodInput.textComponent.color = Color.black;
+				PlayerPrefs.SetInt ("woodCost", wood);
+				var lumbermills = GameObject.FindGameObjectsWithTag("Lumber Mill");
+				foreach (GameObject mill in lumbermills) {
+					mill.GetComponent<Structure> ().SetResourcePrice (wood);
+				}
+			} else {
+				int w = PlayerPrefs.GetInt("woodCost");
+				woodInput.text = w.ToString();
 			}
 		} else {
 			int w = PlayerPrefs.GetInt("woodCost");
@@ -29,12 +34,18 @@ public class BottomBarScript : MonoBehaviour {
 
 		int coal;
 		if (int.TryParse (coalInput.text, out coal)) {
-			coalInput.textComponent.color = Color.black;
-			PlayerPrefs.SetInt ("coalCost", coal);
-			var mines = GameObject.FindGameObjectsWithTag("Coal Mine");
-			foreach (GameObject mine in mines) {
-				mine.GetComponent<Structure> ().SetResourcePrice (coal);
+			if (coal > 0) {
+				coalInput.textComponent.color = Color.black;
+				PlayerPrefs.SetInt ("coalCost", coal);
+				var mines = GameObject.FindGameObjectsWithTag("Coal Mine");
+				foreach (GameObject mine in mines) {
+					mine.GetComponent<Structure> ().SetResourcePrice (coal);
+				}
+			} else {
+				int c = PlayerPrefs.GetInt("coalCost");
+				coalInput.text = c.ToString();
 			}
+
 		} else {
 			int c = PlayerPrefs.GetInt("coalCost");
 			coalInput.text = c.ToString();
