@@ -44,14 +44,14 @@ public class BottomBarScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.SetInt ("woodCost", 5);
-		PlayerPrefs.SetInt ("coalCost", 15);
+		PlayerPrefs.SetInt ("coalCost", 20);
 		woodInput.text = "5";
-		coalInput.text = "15";
+		coalInput.text = "20";
 		woodInput.textComponent.color = Color.black;
 		coalInput.textComponent.color = Color.black;
 
 		PlayerPrefs.SetInt ("competitorWoodCost", 5);
-		PlayerPrefs.SetInt ("competitorCoalCost", 15);
+		PlayerPrefs.SetInt ("competitorCoalCost", 20);
 
 		updateCompetitorText ();
 	}
