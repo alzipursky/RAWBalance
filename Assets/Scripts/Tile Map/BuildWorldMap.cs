@@ -75,9 +75,9 @@ public class BuildWorldMap : MonoBehaviour
         // Apply settings, resizing the TileMap
         m_tileMapBehaviour.MeshSettings = meshSettings;
 		DrawTileMap();
-        DrawForestatPoint(16f,16f);
-        DrawForestatPoint(5f, 5f);
-        DrawForestatPoint(2f, 16f);
+        DrawForestatPoint(10f,16f);
+        DrawForestatPoint(25f, 25f);
+        DrawForestatPoint(2f, 36f);
         DrawLakeatPoint(10f, 10f);
         DrawLakeatPoint(2f, 8f);
         DrawCoalatPoint(35f, 35f);
@@ -96,7 +96,7 @@ public class BuildWorldMap : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 		} else 
 		{
-            var point = new Vector3(Random.Range(4, (xLimit * 4) - 4), Random.Range(0, (yLimit * 4)) - 4);
+            var point = new Vector3(Random.Range(0, xLimit * 4), Random.Range(0, yLimit * 4));
             var pointOK = false;
 
 			while (!pointOK) 
@@ -116,7 +116,7 @@ public class BuildWorldMap : MonoBehaviour
                         {
 
                            // int threshold = 5;
-                            point = new Vector3(Random.Range(4, (xLimit * 4)-4), Random.Range(0, (yLimit * 4))-4);
+                            point = new Vector3(Random.Range(0, xLimit * 3), Random.Range(0, yLimit * 3));
                             //point.x += bounds.max.x + threshold;
                             //point.y += bounds.max.y + threshold;
 
@@ -137,9 +137,12 @@ public class BuildWorldMap : MonoBehaviour
 			}
 
 			DrawSmallVillageatPoint(point.x,point.y);
-			//villageDrawn = true;
-			elapsedTime = 0f;
-			timeLimit *= 2.5f;
+            VillageGrowth();
+            //villageDrawn = true;
+            elapsedTime = 0f;
+			timeLimit *= 1.0f;
+
+
 		}
 	}
 
@@ -233,4 +236,29 @@ public class BuildWorldMap : MonoBehaviour
     }
 
     //insert prefab instationtion for coal -> mountain here as forest above
+
+    private void VillageGrowth()
+    {
+        GameObject[] huts;
+        huts = GameObject.FindGameObjectsWithTag("Settlement");
+
+        if (huts.Length >= 60)
+        {
+            return;
+        }
+
+        foreach (var hutter in huts)
+        {
+            if (hutter.transform.parent != null)
+            {
+                Vector3 target = new Vector3(hutter.transform.parent.position.x + Random.Range(-3f, 3f), hutter.transform.parent.position.y + Random.Range(-3f, 3f));
+                target.z = 0;
+                var newhut = Instantiate(hut);
+                newhut.transform.position = target;
+                newhut.transform.parent = hutter.transform.parent;
+                newhut.transform.localScale = new Vector3(3f, 3f);
+  
+            }
+        }
+    }
 }

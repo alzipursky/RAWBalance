@@ -159,4 +159,38 @@ public class Settlement : MonoBehaviour {
 				
 		}
 	}
+
+    private int Wood_DemandatPrice(int wood_price)
+    {
+        switch(wood_price)
+        {
+            case 0:
+                return 100;
+            case 1:
+                return 80;
+            case 2:
+                return 60;
+            case 3:
+                return 40;
+            case 4:
+                return 30;
+            case 5:
+                return 20;
+            case 6:
+                return 15;
+            case 7:
+                return 10;
+            case 8:
+                return 8;
+            case 9:
+                return 5;
+        }
+
+        if (wood_price >= 10)
+        {
+            return 0;
+        }
+
+        return 0;
+    }
 }
