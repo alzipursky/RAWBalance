@@ -72,6 +72,38 @@ public class Settlement : MonoBehaviour {
 		totalResourceDemand[resource] = amount;
 	}
 
+	public int GetResourceDemandAtPrice(string resource, int wood_price)
+	{
+		if (resource == "wood") {
+			switch (wood_price) {
+			case 0:
+				return 100;
+			case 1:
+				return 80;
+			case 2:
+				return 60;
+			case 3:
+				return 40;
+			case 4:
+				return 30;
+			case 5:
+				return 20;
+			case 6:
+				return 15;
+			case 7:
+				return 10;
+			case 8:
+				return 8;
+			case 9:
+				return 5;
+			default:
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
+
 	void OnMouseExit(){
 
 		PlayerPrefs.SetString("canBuild", "true");
