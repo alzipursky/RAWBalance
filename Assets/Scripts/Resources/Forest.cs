@@ -9,6 +9,8 @@ public class Forest : Resource {
 	private int originalSupply;
 	private Vector3 originalScale;
 
+	private int replantPrice = 8000;
+
 	// Use this for initialization
 	void Start () {
 		associatedEnergyType = "wood";
@@ -22,6 +24,7 @@ public class Forest : Resource {
 
 		originalSupply = totalPotentialEnergy;
 		originalScale = gameObject.transform.localScale;
+		replantPrice = 10000;
 	}
 	
 	// Update is called once per frame
@@ -34,5 +37,9 @@ public class Forest : Resource {
 		}
 		//make the forest look depleted
 		gameObject.transform.localScale = originalScale * ((totalPotentialEnergy / (float)(originalSupply*2)) + 0.5f);
+	}
+
+	public int GetReplantPrice(){
+		return replantPrice;
 	}
 }
