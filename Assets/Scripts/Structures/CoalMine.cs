@@ -60,15 +60,40 @@ public class CoalMine : Structure {
 
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
 
-				if ((resourceSupply >= coalToSell) && (coalToSell > 0)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + coalToSell * resourcePrice - shippingCost);
-					resourceSupply -= coalDemanded;
 
-				} else if (resourceSupply < coalToSell) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
-					resourceSupply = 0;
+				int competitorResourceCost = PlayerPrefs.GetInt("competitorCoalCost");
+				var competitorDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("coal", competitorResourceCost);
+
+				if (competitorResourceCost < resourcePrice) {
+					coalDemanded -= competitorDemandedAtPrice;
+					if (coalDemanded < 0) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+
+					} else {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded);
+
+					}
+
+				} else {
+					if ((resourceSupply >= coalToSell) && (coalToSell > 0)) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+						PlayerPrefs.SetInt("gold", gold + coalToSell * resourcePrice - shippingCost);
+						resourceSupply -= coalDemanded;
+
+					} else if (resourceSupply < coalToSell) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
+						PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
+						resourceSupply = 0;
+					} else if (coalToSell == 0 && coalDemanded > 0) {
+						coalDemanded -= competitorDemandedAtPrice;
+						if (coalDemanded < 0) {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+
+						} else {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded);
+
+						}
+					}
 				}
 			}
 		}

@@ -111,13 +111,13 @@ public class BottomBarScript : MonoBehaviour {
 			int cCc = PlayerPrefs.GetInt("competitorCoalCost");
 
 			if (rnW > 0.5f) { // Increase
-				if (cWc > 15) {
+				if (cWc > 12) {
 					cWc -= 1;
 				} else {
 					cWc += 1;
 				}
 			} else { // Decrease
-				if (cWc < 4) {
+				if (cWc < 3) {
 					cWc += 1;
 				} else {
 					cWc -= 1;

@@ -69,16 +69,42 @@ public class LumberMill : Structure {
 
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
 
-				if ((resourceSupply >= woodToSell) && (woodToSell > 0)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
-					PlayerPrefs.SetInt("gold", gold + woodToSell * resourcePrice - shippingCost);
-					resourceSupply -= woodToSell;
+				int competitorResourceCost = PlayerPrefs.GetInt("competitorWoodCost");
+				var competitorDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("wood", competitorResourceCost);
 
-				} else if (resourceSupply < woodToSell) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
-					resourceSupply = 0;
+				if (competitorResourceCost < resourcePrice) {
+					woodDemanded -= competitorDemandedAtPrice;
+					if (woodDemanded < 0) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+
+					} else {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded);
+
+					}
+
+				} else {
+					if ((resourceSupply >= woodToSell) && (woodToSell > 0)) {
+						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", 0);
+						PlayerPrefs.SetInt ("gold", gold + woodToSell * resourcePrice - shippingCost);
+						resourceSupply -= woodToSell;
+
+					} else if (resourceSupply < woodToSell) {
+						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", woodDemanded - resourceSupply);
+						PlayerPrefs.SetInt ("gold", gold + resourceSupply * resourcePrice - shippingCost);
+						resourceSupply = 0;
+					} else if (woodToSell == 0 && woodDemanded > 0) {
+						woodDemanded -= competitorDemandedAtPrice;
+						if (woodDemanded < 0) {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+
+						} else {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded);
+
+						}
+					}
 				}
+
+
 			}
 		}
 	}
