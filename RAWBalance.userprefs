@@ -1,13 +1,11 @@
-﻿<Properties StartupItem="RAWBalance.Plugins.csproj">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Resources/Resource.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/BottomBarScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/SetBuildScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Structures/AddStructure.cs" Line="99" Column="2" />
-      <File FileName="Assets/Scripts/Structures/LumberMill.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Structures/CoalMine.cs" Line="20" Column="29" />
-      <File FileName="Assets/Scripts/Resources/Resource.cs" Line="110" Column="47" />
-      <File FileName="Assets/Scripts/UI/TopBarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Resources/Mountain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Structures/CoalMine.cs" Line="33" Column="22" />
+      <File FileName="Assets/Scripts/Structures/LumberMill.cs" Line="54" Column="22" />
+      <File FileName="Assets/Scripts/UI/BottomBarScript.cs" Line="144" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
