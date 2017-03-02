@@ -125,13 +125,13 @@ public class BottomBarScript : MonoBehaviour {
 			}
 
 			if (rnC > 0.5f) {
-				if (rnC > 28) {
+				if (cCc > 28) {
 					cCc -= 1;
 				} else {
 					cCc += 1;
 				}
 			} else { // Decrease
-				if (rnC < 10) {
+				if (cCc < 10) {
 					cCc += 1;
 				} else {
 					cCc -= 1;
