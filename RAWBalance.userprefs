@@ -1,14 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Resources/Forest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Structures/LumberMill.cs">
     <Files>
-      <File FileName="Assets/Scripts/Structures/AddStructure.cs" Line="109" Column="69" />
+      <File FileName="Assets/Scripts/Structures/LumberMill.cs" Line="85" Column="13" />
+      <File FileName="Assets/Scripts/Structures/AddStructure.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/UI/SetBuildScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Structures/LumberMill.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Structures/CoalMine.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Resources/Resource.cs" Line="110" Column="20" />
-      <File FileName="Assets/Scripts/Tile Map/BuildWorldMap.cs" Line="162" Column="1" />
+      <File FileName="Assets/Scripts/Resources/Resource.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tile Map/BuildWorldMap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Resources/Forest.cs" Line="12" Column="30" />
+      <File FileName="Assets/Scripts/UI/BottomBarScript.cs" Line="104" Column="17" />
+      <File FileName="Assets/Scripts/Settlements/Settlement.cs" Line="164" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

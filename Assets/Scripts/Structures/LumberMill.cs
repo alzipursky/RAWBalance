@@ -88,7 +88,7 @@ public class LumberMill : Structure {
 						PlayerPrefs.SetInt ("gold", gold + woodToSell * resourcePrice - shippingCost);
 						resourceSupply -= woodToSell;
 
-					} else if (resourceSupply < woodToSell) {
+					} else if (resourceSupply < woodToSell && (resourceSupply > 0)) {
 						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", woodDemanded - resourceSupply);
 						PlayerPrefs.SetInt ("gold", gold + resourceSupply * resourcePrice - shippingCost);
 						resourceSupply = 0;
