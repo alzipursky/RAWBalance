@@ -55,7 +55,7 @@ public class CoalMine : Structure {
 				var coalDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("coal");
 				var gold = PlayerPrefs.GetInt("gold");
 
-				var coalDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("wood", resourcePrice);
+				var coalDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("coal", resourcePrice);
 				var coalToSell = Mathf.Min(coalDemanded, coalDemandedAtPrice);
 
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
