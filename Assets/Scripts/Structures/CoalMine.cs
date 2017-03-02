@@ -78,7 +78,7 @@ public class CoalMine : Structure {
 					if ((resourceSupply >= coalToSell) && (coalToSell > 0)) {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 						PlayerPrefs.SetInt("gold", gold + coalToSell * resourcePrice - shippingCost);
-						resourceSupply -= coalDemanded;
+						resourceSupply -= coalToSell;
 
 					} else if (resourceSupply < coalToSell && (resourceSupply > 0)) {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
