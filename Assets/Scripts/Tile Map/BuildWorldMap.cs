@@ -15,12 +15,15 @@ public class BuildWorldMap : MonoBehaviour
 	public GameObject villageParent;
     public GameObject lake;
     public GameObject mountainParent;
+    public GameObject HQ;
     public int xLimit = 1;
 	public int yLimit = 1;
     private TileMapBehaviour m_tileMapBehaviour;
 
 	private float elapsedTime = 0f;
+    private float elapsedTime_2 = 0f;
 	private float timeLimit = 7f;
+    private float timeLimit_2 = 7f;
 	private bool villageDrawn = false;
 
 	public List<string> names = new List<string>();
@@ -85,7 +88,7 @@ public class BuildWorldMap : MonoBehaviour
         DrawCoalatPoint(20f, 55f);
 
 		DrawSmallVillageatPoint(22f,22f);
-
+        DrawHQ(10f, 35f);
         // Draw a checker pattern
     }
 
@@ -144,7 +147,15 @@ public class BuildWorldMap : MonoBehaviour
 
 
 		}
-	}
+        //if (elapsedTime_2 < timeLimit_2)
+        //{
+        //    elapsedTime_2 += Time.deltaTime;
+        //}else
+        //{
+        //    VillageGrowth();
+        //    timeLimit *= 5.5f;
+        //}
+    }
 
 	private void DrawTileMap()
 	{
@@ -195,6 +206,24 @@ public class BuildWorldMap : MonoBehaviour
 
     }
 
+    private void DrawHQ(float x, float y)
+    {
+        var head = Instantiate(HQ);
+        head.transform.position = new Vector3(x, y);
+
+        for (float j = -1f; j < 3f; j += (2f / 3))
+        {
+            for (float i = 0f; i < 3f; i += (2f / 3))
+            {
+                Vector3 target = new Vector3(x + i, y + j);
+                target.z = 0;
+                head.transform.position = target;
+                head.transform.parent = head.transform;
+                head.transform.localScale = new Vector3(4f, 4f);
+            }
+        }
+    }
+
 	private void DrawSmallVillageatPoint(float x, float y)
 	{
 		var village = Instantiate(villageParent);
@@ -242,7 +271,7 @@ public class BuildWorldMap : MonoBehaviour
         GameObject[] huts;
         huts = GameObject.FindGameObjectsWithTag("Settlement");
 
-        if (huts.Length >= 60)
+        if (huts.Length >= 70)
         {
             return;
         }

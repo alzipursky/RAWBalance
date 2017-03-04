@@ -1,10 +1,21 @@
 fileFormatVersion: 2
 guid: 7c574a5a47d57432abd18c0d2b0cf67f
-timeCreated: 1486149089
+timeCreated: 1488670304
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - grass: {instanceID: 0}
+  - water: {instanceID: 0}
+  - coal: {instanceID: 0}
+  - sand: {instanceID: 0}
+  - trees: {instanceID: 0}
+  - forestParent: {instanceID: 0}
+  - hut: {instanceID: 0}
+  - villageParent: {instanceID: 0}
+  - lake: {instanceID: 0}
+  - mountainParent: {instanceID: 0}
+  - hq: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
