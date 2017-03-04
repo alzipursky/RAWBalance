@@ -111,13 +111,13 @@ public class BottomBarScript : MonoBehaviour {
 			int cCc = PlayerPrefs.GetInt("competitorCoalCost");
 
 			if (rnW > 0.5f) { // Increase
-				if (cWc > 15) {
+				if (cWc > 12) {
 					cWc -= 1;
 				} else {
 					cWc += 1;
 				}
 			} else { // Decrease
-				if (cWc < 4) {
+				if (cWc < 3) {
 					cWc += 1;
 				} else {
 					cWc -= 1;
@@ -125,16 +125,16 @@ public class BottomBarScript : MonoBehaviour {
 			}
 
 			if (rnC > 0.5f) {
-				if (rnC > 28) {
-					rnC -= 1;
+				if (cCc > 28) {
+					cCc -= 1;
 				} else {
-					rnC += 1;
+					cCc += 1;
 				}
 			} else { // Decrease
-				if (rnC < 10) {
-					rnC += 1;
+				if (cCc < 10) {
+					cCc += 1;
 				} else {
-					rnC -= 1;
+					cCc -= 1;
 				}
 			}
 

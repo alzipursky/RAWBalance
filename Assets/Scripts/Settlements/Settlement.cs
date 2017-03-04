@@ -72,29 +72,109 @@ public class Settlement : MonoBehaviour {
 		totalResourceDemand[resource] = amount;
 	}
 
-	public int GetResourceDemandAtPrice(string resource, int wood_price)
+	public int GetResourceDemandAtPrice(string resource, int price)
 	{
 		if (resource == "wood") {
-			switch (wood_price) {
-			case 0:
-				return 100;
+			switch (price) {
 			case 1:
-				return 80;
+				return 100;
 			case 2:
-				return 60;
+				return 90;
 			case 3:
-				return 40;
+				return 70;
 			case 4:
-				return 30;
+				return 80;
 			case 5:
-				return 20;
+				return 40;
 			case 6:
-				return 15;
+				return 30;
 			case 7:
-				return 10;
+				return 20;
 			case 8:
-				return 8;
+				return 15;
 			case 9:
+				return 10;
+			case 10:
+				return 9;
+			case 11:
+				return 8;
+			case 12:
+				return 7;
+			case 13:
+				return 6;
+			case 14:
+				return 5;
+			case 15:
+				return 4;
+			case 16:
+				return 3;
+			case 17:
+				return 2;
+			case 18:
+				return 1;
+			default:
+				return 0;
+			}
+
+		} else if (resource == "coal") {
+			switch (price) {
+			case 1:
+				return 140;
+			case 2:
+				return 135;
+			case 3:
+				return 130;
+			case 4:
+				return 125;
+			case 5:
+				return 120;
+			case 6:
+				return 110;
+			case 7:
+				return 100;
+			case 8:
+				return 90;
+			case 9:
+				return 85;
+			case 10:
+				return 80;
+			case 11:
+				return 75;
+			case 12:
+				return 70;
+			case 13:
+				return 65;
+			case 14:
+				return 60;
+			case 15:
+				return 55;
+			case 16:
+				return 50;
+			case 17:
+				return 45;
+			case 18:
+				return 40;
+			case 19:
+				return 35;
+			case 20:
+				return 30;
+			case 21:
+				return 27;
+			case 22:
+				return 25;
+			case 23:
+				return 20;
+			case 24:
+				return 17;
+			case 25:
+				return 14;
+			case 26:
+				return 11;
+			case 27:
+				return 9;
+			case 28:
+				return 7;
+			case 29:
 				return 5;
 			default:
 				return 0;

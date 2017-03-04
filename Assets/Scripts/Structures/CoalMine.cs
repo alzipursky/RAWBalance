@@ -51,21 +51,49 @@ public class CoalMine : Structure {
 		if (resourceDestinations.Count != 0) {
 			//would subtract from supply of wood and subtract from each settlement's demand here
 			foreach (var dest in resourceDestinations) {
+				
 				var coalDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("coal");
 				var gold = PlayerPrefs.GetInt("gold");
+
+				var coalDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("coal", resourcePrice);
+				var coalToSell = Mathf.Min(coalDemanded, coalDemandedAtPrice);
+
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
-				if ((resourceSupply >= coalDemanded) && (coalDemanded > 0) && (resourceSupply < 100)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + coalDemanded * resourcePrice - shippingCost);
-					resourceSupply -= coalDemanded;
-				} else if ((resourceSupply >= coalDemanded) && (coalDemanded > 0) && (resourceSupply >= 100)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
-					PlayerPrefs.SetInt("gold", gold + coalDemanded * resourcePrice - shippingCost);
-					resourceSupply -= coalDemanded;
-				} else if (resourceSupply < coalDemanded) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
-					resourceSupply = 0;
+
+
+				int competitorResourceCost = PlayerPrefs.GetInt("competitorCoalCost");
+				var competitorDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("coal", competitorResourceCost);
+
+				if (competitorResourceCost < resourcePrice) {
+					coalDemanded -= competitorDemandedAtPrice;
+					if (coalDemanded < 0) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+
+					} else {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded);
+
+					}
+
+				} else {
+					if ((resourceSupply >= coalToSell) && (coalToSell > 0)) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+						PlayerPrefs.SetInt("gold", gold + coalToSell * resourcePrice - shippingCost);
+						resourceSupply -= coalToSell;
+
+					} else if (resourceSupply < coalToSell && (resourceSupply > 0)) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
+						PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
+						resourceSupply = 0;
+					} else if (coalToSell == 0 && coalDemanded > 0) {
+						coalDemanded -= competitorDemandedAtPrice;
+						if (coalDemanded < 0) {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
+
+						} else {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded);
+
+						}
+					}
 				}
 			}
 		}

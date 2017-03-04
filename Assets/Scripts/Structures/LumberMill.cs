@@ -60,6 +60,7 @@ public class LumberMill : Structure {
 		if (resourceDestinations.Count != 0) {
 			//would subtract from supply of wood and subtract from each settlement's demand here
 			foreach (var dest in resourceDestinations) {
+				
 				var woodDemanded = dest.GetComponent<Settlement>().GetTotalResourceDemand("wood");
 				var gold = PlayerPrefs.GetInt("gold");
 
@@ -67,16 +68,43 @@ public class LumberMill : Structure {
 				var woodToSell = Mathf.Min(woodDemanded, woodDemandedAtPrice);
 
 				int shippingCost = (int)Vector3.Distance(transform.position, dest.transform.position);
-//				if ((resourceSupply >= woodDemanded) && (woodDemanded > 0)) {
-				if ((resourceSupply >= woodToSell) && (woodToSell > 0)) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
-					PlayerPrefs.SetInt("gold", gold + woodDemanded * resourcePrice - shippingCost);
-					resourceSupply -= woodDemanded;
-				} else if (resourceSupply < woodToSell) {
-					dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded - resourceSupply);
-					PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
-					resourceSupply = 0;
+
+				int competitorResourceCost = PlayerPrefs.GetInt("competitorWoodCost");
+				var competitorDemandedAtPrice = dest.GetComponent<Settlement>().GetResourceDemandAtPrice("wood", competitorResourceCost);
+
+				if (competitorResourceCost < resourcePrice) {
+					woodDemanded -= competitorDemandedAtPrice;
+					if (woodDemanded < 0) {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+
+					} else {
+						dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded);
+
+					}
+
+				} else {
+					if ((resourceSupply >= woodToSell) && (woodToSell > 0)) {
+						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", 0);
+						PlayerPrefs.SetInt ("gold", gold + woodToSell * resourcePrice - shippingCost);
+						resourceSupply -= woodToSell;
+
+					} else if (resourceSupply < woodToSell && (resourceSupply > 0)) {
+						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", woodDemanded - resourceSupply);
+						PlayerPrefs.SetInt ("gold", gold + resourceSupply * resourcePrice - shippingCost);
+						resourceSupply = 0;
+					} else if (woodToSell == 0 && woodDemanded > 0) {
+						woodDemanded -= competitorDemandedAtPrice;
+						if (woodDemanded < 0) {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
+
+						} else {
+							dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", woodDemanded);
+
+						}
+					}
 				}
+
+
 			}
 		}
 	}
