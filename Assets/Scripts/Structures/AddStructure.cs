@@ -20,6 +20,7 @@ public class AddStructure : MonoBehaviour {
 	private float timeSinceDraw = 0;
 	private int operatingCost;
 	private int distanceFactor;
+	private int price;
 
 	GUIStyle style = new GUIStyle();
 
@@ -41,6 +42,7 @@ public class AddStructure : MonoBehaviour {
 		}
 
 		if (structureTag == "Forest") {
+			price = 8000;
 			structureTag = "Resource";
 		}
 
@@ -53,6 +55,7 @@ public class AddStructure : MonoBehaviour {
 					var tmp = Instantiate(st);
 					if (tmp.GetComponent<Structure>()) {
 						operatingCost = tmp.GetComponent<Structure>().GetFixedOperatingCosts();
+						price = tmp.GetComponent<Structure>().GetPrice();
 					}
 					Destroy(tmp);
 					if (structureTag == "Lumber Mill") {
@@ -107,12 +110,13 @@ public class AddStructure : MonoBehaviour {
 						structurePrice = tmp.GetComponent<Structure>().GetPrice();
 					} else {
 						structurePrice = tmp.GetComponent<Forest>().GetReplantPrice();
+						price = structurePrice;
 					}
 					Destroy(tmp);
 					break;
 				}
 			}
-			if (gold > structurePrice) 
+			if (gold >= structurePrice) 
 			{
 				target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				target.z = 0;
@@ -167,17 +171,18 @@ public class AddStructure : MonoBehaviour {
 		if (drawGui) 
 		{
 			GUI.Label(new Rect(guiLocation.x + 2, -(guiLocation.y - Screen.height), 100, 100), "You don't have enough gold to build that", style);
-		}
-
-		if (drawMouseObj && PlayerPrefs.GetString("canBuild")=="true" && !drawingResource) 
+		
+		} else if (drawMouseObj && PlayerPrefs.GetString("canBuild")=="true" && !drawingResource) 
 		{
 			GUI.DrawTexture(new Rect(guiLocation.x-9, -(guiLocation.y - Screen.height+22), 40, 40),textureToDraw);
 			GUI.Label(new Rect(guiLocation.x-2, -(guiLocation.y - Screen.height+22), 40, 40),string.Format("Minimum Production Cost: {0}",operatingCost+distanceFactor),style);
+			GUI.Label(new Rect(guiLocation.x-2, -(guiLocation.y - Screen.height+42), 40, 40),string.Format("Cost to build: {0}",price),style);
 		}
 
 		if (drawMouseObj && PlayerPrefs.GetString("canBuild")=="true" && drawingResource) 
 		{
 			GUI.DrawTexture(new Rect(guiLocation.x-9, -(guiLocation.y - Screen.height+22), 40, 40),textureToDraw);
+			GUI.Label(new Rect(guiLocation.x-2, -(guiLocation.y - Screen.height+42), 40, 40),string.Format("Cost to build: {0}",price),style);
 		}
 
 	}
