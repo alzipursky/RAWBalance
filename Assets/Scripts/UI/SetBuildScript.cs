@@ -19,6 +19,12 @@ public class SetBuildScript : MonoBehaviour {
 		string build = PlayerPrefs.GetString ("build");
 		if (build == "None") {
 			dropDown.value = 0;
+		} else if (build == "Lumber Mill") {
+			dropDown.value = 1;
+		} else if (build == "Coal Mine") {
+			dropDown.value = 2;
+		} else if (build == "Forest") {
+			dropDown.value = 3;
 		}
 	}
 
