@@ -94,7 +94,7 @@ public class BottomBarScript : MonoBehaviour {
 		}
 
 		if (status == " - ") {
-			status = "";
+			status += "Balanced prices.";
 		}
 
 		if (damage == "AA") {
@@ -106,7 +106,7 @@ public class BottomBarScript : MonoBehaviour {
 		} else if (damage == "AB") {
 			competitorText.color = Color.yellow;
 		} else if (damage == "B") {
-			competitorText.color = new Color (1f, 1f, 0f, 1f);
+			competitorText.color = new Color (1f, 0.5f, 0f, 1f);
 		} else if (damage == "A") {
 			competitorText.color = new Color (33.0f / 255.0f, 128.0f / 255.0f, 62.0f / 255.0f, 1f);
 		} else if (damage == "") {
