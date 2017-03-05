@@ -70,8 +70,86 @@ public class BottomBarScript : MonoBehaviour {
 	void updateCompetitorText(){
 		int cWc = PlayerPrefs.GetInt("competitorWoodCost");
 		int cCc = PlayerPrefs.GetInt("competitorCoalCost");
+		int currWood = PlayerPrefs.GetInt ("woodCost");
+		int currCoal = PlayerPrefs.GetInt("coalCost");
 
-		competitorText.text = string.Format ("Competitor - Wood Price: {0} - Coal Price: {1}", cWc, cCc);
+		string status = " - ";
+
+		string damage = "";
+
+		if (currWood < cWc) {
+			status += "Undercutting wood. ";
+			damage += "A";
+		} else if (currWood > cWc) {
+			status += "Being undercut on wood. ";
+			damage += "B";
+		}
+
+		if (currCoal < cCc) {
+			status += "Under cutting coal.";
+			damage += "A";
+		} else if (currCoal > cCc) {
+			status += "Being undercut on coal.";
+			damage += "B";
+		}
+
+		if (status == " - ") {
+			status = "";
+		}
+
+		if (damage == "AA") {
+			competitorText.color = new Color (33.0f / 255.0f, 128.0f / 255.0f, 92.0f / 255.0f, 1f);
+		} else if (damage == "BA") {
+			competitorText.color = Color.yellow;
+		} else if (damage == "BB") {
+			competitorText.color = Color.red;
+		} else if (damage == "AB") {
+			competitorText.color = Color.yellow;
+		} else if (damage == "B") {
+			competitorText.color = new Color (1f, 1f, 0f, 1f);
+		} else if (damage == "A") {
+			competitorText.color = new Color (33.0f / 255.0f, 128.0f / 255.0f, 62.0f / 255.0f, 1f);
+		} else if (damage == "") {
+			competitorText.color = Color.white;
+		}
+
+		competitorText.text = string.Format ("Competitor Wood: {0} & Coal: {1}{2}", cWc, cCc, status);
+	}
+
+	void updateWoodInputColors(bool gray){
+		int cWc = PlayerPrefs.GetInt("competitorWoodCost");
+		int currWood = PlayerPrefs.GetInt("woodCost");
+
+		if (currWood < cWc) {
+			woodInput.textComponent.color = new Color(33.0f/255.0f, 128.0f/255.0f, 92.0f/255.0f, 1f);
+		} else if (currWood > cWc) {
+			woodInput.textComponent.color = Color.red;
+		} else if (currWood == cWc) {
+			woodInput.textComponent.color = Color.black;
+		}
+
+		if (gray) {
+			woodInput.textComponent.color = Color.gray;
+		}
+
+	}
+		
+	void updateCoalInputColors(bool gray){
+		int cCc = PlayerPrefs.GetInt("competitorCoalCost");
+		int currCoal = PlayerPrefs.GetInt("coalCost");
+
+		if (currCoal < cCc) {
+			coalInput.textComponent.color = new Color(33.0f/255.0f, 128.0f/255.0f, 92.0f/255.0f, 1f);
+		} else if (currCoal > cCc) {
+			coalInput.textComponent.color = Color.red;
+		} else if (currCoal == cCc) {
+			coalInput.textComponent.color = Color.black;
+		}
+
+		if (gray) {
+			coalInput.textComponent.color = Color.gray;
+		}
+
 	}
 
 	float flag = 0f;
@@ -86,19 +164,21 @@ public class BottomBarScript : MonoBehaviour {
 
 		if (int.TryParse (woodInput.text, out actualWood)) {
 			if (currWood != actualWood) {
-				woodInput.textComponent.color = Color.gray;
+				updateWoodInputColors (true);
 			} else {
-				woodInput.textComponent.color = Color.black;
+				updateWoodInputColors (false);
 			}
+
 		}
 
 		if (int.TryParse (coalInput.text, out actualCoal)) {
 			if (currCoal != actualCoal) {
-				coalInput.textComponent.color = Color.gray;
+				updateCoalInputColors (true);
 			} else {
-				coalInput.textComponent.color = Color.black;
+				updateCoalInputColors (false);
 			}
 		}
+
 		updateCompetitorText ();
 
 		if (flag >= 20f) {

@@ -1,21 +1,24 @@
 fileFormatVersion: 2
 guid: 7c574a5a47d57432abd18c0d2b0cf67f
-timeCreated: 1488670304
+timeCreated: 1488674395
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - grass: {instanceID: 0}
   - water: {instanceID: 0}
-  - coal: {instanceID: 0}
+  - coal: {fileID: 1474476793164436, guid: 55d77f245efd3c44d8a19b14896420c3, type: 2}
   - sand: {instanceID: 0}
-  - trees: {instanceID: 0}
-  - forestParent: {instanceID: 0}
-  - hut: {instanceID: 0}
-  - villageParent: {instanceID: 0}
-  - lake: {instanceID: 0}
-  - mountainParent: {instanceID: 0}
-  - hq: {instanceID: 0}
+  - trees: {fileID: 1768265487750410, guid: 1293956ccfa264faba158c91a2527cf8, type: 2}
+  - forestParent: {fileID: 1484686119484610, guid: 7577e341f9fac44eaa620320fa60edba,
+      type: 2}
+  - hut: {fileID: 1980212943644420, guid: 1f9e983c150f94002af27ae13bcbc3da, type: 2}
+  - villageParent: {fileID: 1564251440650338, guid: 003bdaf52beef49db95dd2ba2061f54f,
+      type: 2}
+  - lake: {fileID: 1973262027682480, guid: 96205349df983a44c8d9ef949aa9ad6a, type: 2}
+  - mountainParent: {fileID: 1336030402445344, guid: 3a08c4c47ac5ffb4e84eeb8a3c013f0d,
+      type: 2}
+  - HQ: {fileID: 1354381913764282, guid: 994c1e9e7e399354081ff34279c632ae, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
