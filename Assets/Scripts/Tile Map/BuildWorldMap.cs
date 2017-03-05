@@ -22,7 +22,7 @@ public class BuildWorldMap : MonoBehaviour
 
 	private float elapsedTime = 0f;
     private float elapsedTime_2 = 0f;
-	private float timeLimit = 7f;
+	private float timeLimit = 9f;
     private float timeLimit_2 = 7f;
 	private bool villageDrawn = false;
 
@@ -140,21 +140,21 @@ public class BuildWorldMap : MonoBehaviour
 			}
 
 			DrawSmallVillageatPoint(point.x,point.y);
-            VillageGrowth();
             //villageDrawn = true;
             elapsedTime = 0f;
-			timeLimit *= 2.5f;
+			timeLimit *= 3f;
 
 
 		}
-        //if (elapsedTime_2 < timeLimit_2)
-        //{
-        //    elapsedTime_2 += Time.deltaTime;
-        //}else
-        //{
-        //    VillageGrowth();
-        //    timeLimit *= 5.5f;
-        //}
+        if (elapsedTime_2 < timeLimit_2)
+        {
+            elapsedTime_2 += Time.deltaTime;
+        } else
+        {
+            VillageGrowth();
+			elapsedTime_2 = 0f;
+			timeLimit_2 *= 5.5f;
+        }
     }
 
 	private void DrawTileMap()

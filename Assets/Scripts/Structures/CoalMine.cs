@@ -8,7 +8,7 @@ public class CoalMine : Structure {
 
 	// Use this for initialization
 	void Awake () {
-		price = 15000;
+		price = 6500;
 		fixedOperatingCosts = 135;
 		associatedEnergyType = "coal";
 		gameObject.tag = "Coal Mine";
@@ -17,6 +17,7 @@ public class CoalMine : Structure {
 	}
 
 	void Start(){
+		price = 6500;
 		fixedOperatingCosts = 135;
 		associatedEnergyType = "coal";
 		gameObject.tag = "Coal Mine";
@@ -66,6 +67,8 @@ public class CoalMine : Structure {
 
 				if (competitorResourceCost < resourcePrice) {
 					coalDemanded -= competitorDemandedAtPrice;
+					dest.GetComponent<Settlement> ().setBuyingFromPlayer (false);
+
 					if (coalDemanded < 0) {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 
@@ -79,13 +82,18 @@ public class CoalMine : Structure {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 						PlayerPrefs.SetInt("gold", gold + coalToSell * resourcePrice - shippingCost);
 						resourceSupply -= coalToSell;
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (true);
 
 					} else if (resourceSupply < coalToSell && (resourceSupply > 0)) {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", coalDemanded - resourceSupply);
 						PlayerPrefs.SetInt("gold", gold + resourceSupply * resourcePrice - shippingCost);
 						resourceSupply = 0;
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (true);
+
 					} else if (coalToSell == 0 && coalDemanded > 0) {
 						coalDemanded -= competitorDemandedAtPrice;
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (false);
+
 						if (coalDemanded < 0) {
 							dest.GetComponent<Settlement>().SetTotalResourceDemand("coal", 0);
 

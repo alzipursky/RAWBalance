@@ -17,10 +17,20 @@ public class Settlement : MonoBehaviour {
 	public Sprite unSelectedSprite;
 	public Sprite hoverSprite;
 
+	protected bool buyingFromPlayer = false;
+
 	// Use this for initialization
 	void Start () {
 
 
+	}
+
+	public void setBuyingFromPlayer(bool b){
+		buyingFromPlayer = b;
+	}
+
+	public bool getBuyingFromPlayer(){
+		return buyingFromPlayer;
 	}
 
 	// Update is called once per frame

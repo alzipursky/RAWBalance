@@ -11,7 +11,7 @@ public class LumberMill : Structure {
 
 	void Awake()
 	{
-		price = 7500;
+		price = 4000;
 		fixedOperatingCosts = 55;
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
@@ -20,7 +20,7 @@ public class LumberMill : Structure {
 	}
 
 	void Start () {
-		//price = 30000;
+		price = 4000;
 		fixedOperatingCosts = 75;
 		associatedEnergyType = "wood";
 		gameObject.tag = "Lumber Mill";
@@ -74,6 +74,8 @@ public class LumberMill : Structure {
 
 				if (competitorResourceCost < resourcePrice) {
 					woodDemanded -= competitorDemandedAtPrice;
+					dest.GetComponent<Settlement> ().setBuyingFromPlayer (false);
+
 					if (woodDemanded < 0) {
 						dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
 
@@ -87,13 +89,16 @@ public class LumberMill : Structure {
 						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", 0);
 						PlayerPrefs.SetInt ("gold", gold + woodToSell * resourcePrice - shippingCost);
 						resourceSupply -= woodToSell;
-
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (true);
 					} else if (resourceSupply < woodToSell && (resourceSupply > 0)) {
 						dest.GetComponent<Settlement> ().SetTotalResourceDemand ("wood", woodDemanded - resourceSupply);
 						PlayerPrefs.SetInt ("gold", gold + resourceSupply * resourcePrice - shippingCost);
 						resourceSupply = 0;
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (true);
 					} else if (woodToSell == 0 && woodDemanded > 0) {
 						woodDemanded -= competitorDemandedAtPrice;
+						dest.GetComponent<Settlement> ().setBuyingFromPlayer (false);
+
 						if (woodDemanded < 0) {
 							dest.GetComponent<Settlement>().SetTotalResourceDemand("wood", 0);
 
