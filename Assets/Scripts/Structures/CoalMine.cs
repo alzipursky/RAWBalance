@@ -31,7 +31,7 @@ public class CoalMine : Structure {
 
 			if (elapsedTime > 4f && currentlyProducing && available > 0) {
 
-				int consume = 18;
+				int consume = 70;
 
 				if (available < consume) {
 					consume = available;

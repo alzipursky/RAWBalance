@@ -14,7 +14,7 @@ public class Forest : Resource {
 	// Use this for initialization
 	void Start () {
 		associatedEnergyType = "wood";
-		potentialEnergyPerUnit = 60;
+		potentialEnergyPerUnit = 300;
 
 		if (gameObject.transform.parent == null) {
 			totalPotentialEnergy = potentialEnergyPerUnit * gameObject.transform.childCount;

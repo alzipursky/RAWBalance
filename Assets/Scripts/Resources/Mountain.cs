@@ -13,7 +13,7 @@ public class Mountain : Resource
     void Start()
     {
         associatedEnergyType = "coal";
-        potentialEnergyPerUnit = 450;
+        potentialEnergyPerUnit = 2250;
 
         if (gameObject.transform.parent == null)
         {

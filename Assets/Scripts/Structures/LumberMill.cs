@@ -39,7 +39,7 @@ public class LumberMill : Structure {
 
 			if (elapsedTime > 2f && currentlyProducing && available > 0) {
 
-				int consume = 20;
+				int consume = 30;
 
 				if (available < consume) {
 					consume = available;
