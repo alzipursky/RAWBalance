@@ -22,7 +22,7 @@ public class CameraDrag : MonoBehaviour
 		if (!Input.GetMouseButton(0)) return;
 
 		Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-		Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed,0);
+		Vector3 move = new Vector3(-pos.x * dragSpeed, (-pos.y) * dragSpeed,0);
 		//if((transform. > xMinLimit && pos.x*dragSpeed<xMaxLimit) && (pos.y*dragSpeed > yMinLimit && pos.y*dragSpeed<yMaxLimit)){
 		//Debug.Log(transform.position);
 		//Debug.Log(move);
@@ -31,9 +31,9 @@ public class CameraDrag : MonoBehaviour
 		var newX = transform.position.x + worldMove.x;
 		var newY = transform.position.y + worldMove.y;
 
-		if((newX > xMinLimit && newX<xMaxLimit) && (newY > yMinLimit && newY<yMaxLimit)){
-			transform.Translate(move, Space.World);
-		}
+		//if((newX > xMinLimit && newX<xMaxLimit) && (newY > yMinLimit && newY<yMaxLimit)){
+		transform.Translate(move, Space.World);
+		//}
 	}
 
 
